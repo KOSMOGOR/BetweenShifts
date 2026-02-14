@@ -27,5 +27,6 @@ public class PlayerMovement : MonoBehaviour
         right.y = 0; right.Normalize();
         Vector3 characterMoveInput = forward * moveInput.y + right * moveInput.x;
         characterController.Move(characterMoveInput.normalized * (speed * Time.deltaTime));
+        transform.Rotate(Vector3.up, Vector3.SignedAngle(transform.forward, characterMoveInput, Vector3.up));
     }
 }

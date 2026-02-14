@@ -1,12 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractableObject : MonoBehaviour
 {
-    void Start() {
-        
-    }
+    public List<InteractableObjectAction> actions = new();
 
-    void Update() {
-        
+    public void Interact() {
+        actions.ForEach(action => action.OnInteract());
     }
 }
