@@ -1,6 +1,10 @@
-using UnityEngine;
+using System;
+using System.Collections;
 
-abstract public class InteractableObjectAction : MonoBehaviour
+[Serializable]
+abstract public class InteractableObjectAction
 {
-    abstract public void OnInteract();
+    [NonSerialized] public InteractableObjectAction next;
+
+    abstract public IEnumerator DoAction();
 }

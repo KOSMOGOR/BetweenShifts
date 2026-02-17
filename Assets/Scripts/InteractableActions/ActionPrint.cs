@@ -1,10 +1,14 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
+[Serializable]
 public class ActionPrint : InteractableObjectAction
 {
     public string stringToPrint = "Test";
 
-    public override void OnInteract() {
+    public override IEnumerator DoAction() {
         Debug.Log(stringToPrint);
+        yield return null;
     }
 }
