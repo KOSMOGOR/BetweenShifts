@@ -21,8 +21,8 @@ public class PlayerMovement : MonoBehaviour
         player = GetComponent<Player>();
     }
 
-    void OnEnable() { SendInput.I.Subscribe(gameObject); }
-    void OnDisable() { SendInput.I.Unsubscribe(gameObject); }
+    void OnEnable() { InputManager.I.Subscribe(gameObject); }
+    void OnDisable() { InputManager.I.Unsubscribe(gameObject); }
 
 #pragma warning disable IDE0051, IDE0060
     void OnMove(InputValue input) {

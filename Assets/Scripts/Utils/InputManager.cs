@@ -1,9 +1,11 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[DefaultExecutionOrder(-100)]
 [RequireComponent(typeof(PlayerInput))]
-public class SendInput : SingletonMonoBehaviour<SendInput>
+public class InputManager : SingletonMonoBehaviour<InputManager>
 {
     public List<GameObject> subscribedObjects = new();
 

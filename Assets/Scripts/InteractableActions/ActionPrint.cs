@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 [Serializable]
-public class ActionPrint : InteractableObjectAction
+public class ActionPrint : InteractableAction
 {
     public string stringToPrint = "Test";
 

@@ -16,10 +16,11 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
 
     override protected void AwakeNew() {
         dialogueRoot.gameObject.SetActive(false);
+        // DontDestroyOnLoad(transform.parent.gameObject);
     }
 
-    void OnEnable() { SendInput.I.Subscribe(gameObject); }
-    void OnDisable() { SendInput.I.Unsubscribe(gameObject); }
+    void OnEnable() { InputManager.I.Subscribe(gameObject); }
+    void OnDisable() { InputManager.I.Unsubscribe(gameObject); }
 
     void OnValidate() {
         waitBetweenChars = new(1 / charsPerSecond);
@@ -50,4 +51,10 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
     public void Hide() {
         dialogueRoot.gameObject.SetActive(false);
     }
+
+    public void HideForAction(InteractableAction action) {
+        if (action == null || action is not IDialogRenderable) Hide();
+    }
 }
+
+public interface IDialogRenderable {}

@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 
 [Serializable]
-public class ActionDialogueText : InteractableAction, IDialogRenderable
+public class ActionAddInventoryItem : InteractableAction
 {
-    public string dialogueText = "Test dialogue";
+    public InventoryItem itemToAdd;
 
     public override IEnumerator DoAction() {
-        DialogueRenderer.I.StartDialogue(dialogueText);
+        Inventory.I.AddItem(itemToAdd);
+        DialogueRenderer.I.StartDialogue($"You got {itemToAdd.itemName}");
         while (!DialogueRenderer.I.DialogueDone) yield return null;
         DialogueRenderer.I.HideForAction(next);
     }

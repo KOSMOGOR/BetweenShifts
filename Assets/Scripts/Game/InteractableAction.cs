@@ -2,9 +2,9 @@ using System;
 using System.Collections;
 
 [Serializable]
-abstract public class InteractableObjectAction
+abstract public class InteractableAction
 {
-    [NonSerialized] public InteractableObjectAction next;
+    [NonSerialized] public InteractableAction next;
 
     abstract public IEnumerator DoAction();
 }

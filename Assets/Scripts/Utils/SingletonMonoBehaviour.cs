@@ -10,6 +10,7 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T: SingletonMonoBeh
             Destroy(gameObject);
             return;
         }
+        DontDestroyOnLoad(gameObject.transform.root.gameObject);
         AwakeNew();
     }
 
