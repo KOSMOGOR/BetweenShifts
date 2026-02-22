@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,6 +9,8 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
     public GameObject inventoryItemUIPrefab;
     public Transform inventoryRenderRoot;
     public Transform inventoryItemList;
+    public TMP_Text itemNameText;
+    public TMP_Text itemDescriptionText;
 
     bool isDisplayed = false;
     int currentlySelected = -1;
@@ -37,7 +38,12 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
 
     void UpdateSelected() {
         if (items.Count == 0) currentlySelected = -1;
-        else if (currentlySelected != -1) currentlySelected %= items.Count;
+        else if (currentlySelected != -1) {
+            currentlySelected %= items.Count;
+            InventoryItem item = items[currentlySelected];
+            itemNameText.text = item.itemName;
+            itemDescriptionText.text = item.itemDescription;
+        }
     }
 
     public void AddItem(InventoryItem item) {

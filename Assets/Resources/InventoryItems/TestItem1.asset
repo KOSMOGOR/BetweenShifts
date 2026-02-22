@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TestItem1
   m_EditorClassIdentifier: 
   itemName: Test Item 1
-  itemDescription: ItemDescription
+  itemDescription: Test Description 1
