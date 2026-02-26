@@ -1,4 +1,4 @@
-public class InteractableObject : BaseInteractable
+public class InteractableObject : InteractableMultipleActions, IPlayerInteractable
 {
 
 }

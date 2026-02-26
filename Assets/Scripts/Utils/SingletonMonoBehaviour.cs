@@ -5,11 +5,11 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T: SingletonMonoBeh
     public static T I { get; private set; }
 
     void Awake() {
-        if (I == null) I = (T)this;
-        else {
+        if (I != null) {
             Destroy(gameObject);
             return;
         }
+        I = (T)this;
         DontDestroyOnLoad(gameObject.transform.root.gameObject);
         AwakeNew();
     }

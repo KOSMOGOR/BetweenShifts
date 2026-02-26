@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
             // .Where(obj => obj.TryGetComponent<InteractableObject>(out var io))
             .OrderBy(obj => Vector3.Distance(obj.transform.position, transform.position))
             .First()
-            .GetComponent<InteractableObject>().Interact();
+            .GetComponent<BaseInteractable>().Interact();
     }
 #pragma warning restore IDE0051, IDE0060
 
@@ -52,3 +52,6 @@ public class PlayerMovement : MonoBehaviour
         transform.Rotate(Vector3.up, Vector3.SignedAngle(transform.forward, characterMoveInput, Vector3.up));
     }
 }
+
+// for object which interactions can be started by player interaction
+interface IPlayerInteractable {}
