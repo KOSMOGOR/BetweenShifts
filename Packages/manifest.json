@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.spoiledcat.git": "1.0.62",
     "com.mackysoft.serializereference-extensions": "https://github.com/mackysoft/Unity-SerializeReferenceExtensions.git?path=Assets/MackySoft/MackySoft.SerializeReferenceExtensions",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.ai.navigation": "2.0.10",
@@ -45,5 +46,14 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  }
+  },
+  "scopedRegistries": [
+    {
+      "name": "spoiledcat",
+      "url": "https://registry.spoiledcat.com",
+      "scopes": [
+        "com.spoiledcat"
+      ]
+    }
+  ]
 }
