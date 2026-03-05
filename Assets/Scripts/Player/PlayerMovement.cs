@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Player))]
+[RequireComponent(typeof(Collider))]
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
@@ -14,11 +15,13 @@ public class PlayerMovement : MonoBehaviour
     CharacterController characterController;
     Vector2 moveInput;
     Player player;
+    Collider _collider;
 
     void Awake() {
         mainCam = Camera.main;
         characterController = GetComponent<CharacterController>();
         player = GetComponent<Player>();
+        _collider = GetComponent<Collider>();
     }
 
     void OnEnable() { InputManager.I.Subscribe(gameObject); }
@@ -35,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         List<GameObject> interactableObjects = interactColliders.GetObjects();
         if (interactableObjects.Count == 0) return;
         interactableObjects
-            // .Where(obj => obj.TryGetComponent<InteractableObject>(out var io))
+            // .Where(obj => obj.GetComponent<BaseInteractable>() is IPlayerInteractable)
             .OrderBy(obj => Vector3.Distance(obj.transform.position, transform.position))
             .First()
             .GetComponent<BaseInteractable>().Interact();
@@ -50,6 +53,14 @@ public class PlayerMovement : MonoBehaviour
         Vector3 characterMoveInput = forward * moveInput.y + right * moveInput.x;
         characterController.Move(characterMoveInput.normalized * (speed * Time.deltaTime));
         transform.Rotate(Vector3.up, Vector3.SignedAngle(transform.forward, characterMoveInput, Vector3.up));
+        StickToGround();
+    }
+
+    void StickToGround() {
+        Ray ray = new(transform.position, -transform.up);
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 5)) {
+            transform.position = hitInfo.point + transform.up * (_collider.bounds.size.y / 2);
+        }
     }
 }
 

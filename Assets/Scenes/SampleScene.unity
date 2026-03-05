@@ -1505,7 +1505,7 @@ Transform:
   m_GameObject: {fileID: 1118023172}
   serializedVersion: 2
   m_LocalRotation: {x: 0.1464466, y: 0.8535535, z: -0.35355338, w: 0.35355338}
-  m_LocalPosition: {x: -5, y: 6, z: 2.5}
+  m_LocalPosition: {x: -5, y: 6, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1685,7 +1685,6 @@ MonoBehaviour:
   actions:
   - rid: 835268326032408673
   - rid: 835268326032408675
-  - rid: 835268326032408688
   - rid: 835268326032408690
   - rid: 835268326032408674
   - rid: 835268326032408702
@@ -1706,13 +1705,9 @@ MonoBehaviour:
     - rid: 835268326032408675
       type: {class: ActionBranchState, ns: , asm: Assembly-CSharp}
       data:
-        trueLabel: Label1
+        trueLabel: Next
         falseLabel: Label2
         targetStateName: Init
-    - rid: 835268326032408688
-      type: {class: ActionLabel, ns: , asm: Assembly-CSharp}
-      data:
-        label: Label1
     - rid: 835268326032408690
       type: {class: ActionDialogueText, ns: , asm: Assembly-CSharp}
       data:
@@ -1731,7 +1726,7 @@ MonoBehaviour:
     - rid: 835268326032408704
       type: {class: ActionDialogueText, ns: , asm: Assembly-CSharp}
       data:
-        dialogueText: You already got an item
+        dialogueText: You have already interacted
 --- !u!65 &1122467032
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2202,6 +2197,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1801170727 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4885418507789751220, guid: a9d905d90ab5194449389aef67cb9f8b, type: 3}
+  m_PrefabInstance: {fileID: 5482314198372136986}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1807807749
 GameObject:
   m_ObjectHideFlags: 0
@@ -2424,7 +2424,7 @@ Transform:
   m_GameObject: {fileID: 1979495352}
   serializedVersion: 2
   m_LocalRotation: {x: 0.1464466, y: 0.8535535, z: -0.35355338, w: 0.35355338}
-  m_LocalPosition: {x: -5, y: 6, z: 2.5}
+  m_LocalPosition: {x: -5, y: 6, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2469,7 +2469,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 0}
+    TrackingTarget: {fileID: 1801170727}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
