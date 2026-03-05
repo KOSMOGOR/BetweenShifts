@@ -4,12 +4,15 @@ using UnityEngine;
 
 abstract public class InteractableMultipleActions : BaseInteractable
 {
-    [SerializeReference, SubclassSelector] List<InteractableAction> actions;
+    [SerializeReference, SubclassSelector] public List<ActionBase> actions;
 
-    void Awake() {
+    new void Awake() {
+        base.Awake();
         for (int i = 0; i < actions.Count - 1; i++) {
             actions[i].next = actions[i + 1];
+            actions[i].interactable = this;
         }
+        actions[^1].interactable = this;
     }
 
     override public void Interact() {
@@ -19,7 +22,7 @@ abstract public class InteractableMultipleActions : BaseInteractable
     IEnumerator InteractCoroutine(PlayerState newState, bool returnToStartState = true) {
         PlayerState startState = Player.I.playerState;
         Player.I.playerState = newState;
-        InteractableAction current = actions[0];
+        ActionBase current = actions[0];
         while (current != null) {
             yield return current.DoAction();
             current = current.next;

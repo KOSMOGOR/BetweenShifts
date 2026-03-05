@@ -52,7 +52,7 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
         dialogueRoot.gameObject.SetActive(false);
     }
 
-    public void HideForAction(InteractableAction action) {
+    public void HideForAction(ActionBase action) {
         if (action == null || action is not IDialogRenderable) Hide();
     }
 }

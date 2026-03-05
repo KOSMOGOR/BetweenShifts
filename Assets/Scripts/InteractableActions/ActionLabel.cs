@@ -1,14 +1,12 @@
 using System;
 using System.Collections;
-using UnityEngine;
 
 [Serializable]
-public class ActionPrint : ActionBase
+public class ActionLabel : ActionBase
 {
-    public string stringToPrint = "Test";
+    public string label = "Label";
 
     public override IEnumerator DoAction() {
-        Debug.Log(stringToPrint);
         yield return null;
     }
 }

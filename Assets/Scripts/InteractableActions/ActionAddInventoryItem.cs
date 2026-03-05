@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 
 [Serializable]
-public class ActionAddInventoryItem : InteractableAction
+public class ActionAddInventoryItem : ActionBase
 {
     public InventoryItem itemToAdd;
 

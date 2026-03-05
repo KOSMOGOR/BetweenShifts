@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 
 [Serializable]
-public class ActionDialogueText : InteractableAction, IDialogRenderable
+public class ActionDialogueText : ActionBase, IDialogRenderable
 {
     public string dialogueText = "Test dialogue";
 
