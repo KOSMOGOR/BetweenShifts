@@ -14,27 +14,25 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
 
     bool isDisplayed = false;
     int currentlySelected = -1;
-    
-    void OnEnable() { InputManager.I.Subscribe(gameObject); }
-    void OnDisable() { InputManager.I.Unsubscribe(gameObject); }
 
     protected override void AwakeNew() {
         inventoryRenderRoot.gameObject.SetActive(false);
     }
 
-#pragma warning disable IDE0051, IDE0060
-    void OnMove(InputValue input) {
-        if (Player.I.playerState != PlayerState.Interacting) return;
-        Vector2 moveInput = input.Get<Vector2>();
-        if (moveInput.y < 0) currentlySelected += 1;
-        if (moveInput.y > 0) currentlySelected -= 1;
+    void Update() {
+        Move();
+        Interact();
+    }
+
+    void Move() {
+        currentlySelected -= Keyboard.current.wKey.wasPressedThisFrame ? 1 : 0;
+        currentlySelected += Keyboard.current.sKey.wasPressedThisFrame ? 1 : 0;
         UpdateSelected();
     }
 
-    void OnInteract(InputValue input) {
-        if (Player.I.playerState != PlayerState.Interacting) return;
+    void Interact() {
+        if (Player.I.playerState != PlayerState.Inventory) return;
     }
-#pragma warning restore IDE0051, IDE0060
 
     void UpdateSelected() {
         if (items.Count == 0) currentlySelected = -1;

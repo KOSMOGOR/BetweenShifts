@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,20 +5,15 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
 public class InputManager : SingletonMonoBehaviour<InputManager>
 {
-    public List<GameObject> subscribedObjects = new();
+    public static Vector2 move; 
+    public static bool interact; 
 
-    protected override void AwakeNew() {
-        subscribedObjects = new();
-    }
+    public void OnMove(InputAction.CallbackContext input) { move = input.ReadValue<Vector2>(); }
+    public void OnInteract(InputAction.CallbackContext input) { interact = input.performed; }
 
-    void OnMove(InputValue input) { subscribedObjects.ForEach(obj => obj.SendMessage(nameof(OnMove), input, SendMessageOptions.DontRequireReceiver)); }
-    void OnInteract(InputValue input) { subscribedObjects.ForEach(obj => obj.SendMessage(nameof(OnInteract), input, SendMessageOptions.DontRequireReceiver)); }
-
-    public void Subscribe(GameObject obj) {
-        subscribedObjects.Add(obj);
-    }
-
-    public void Unsubscribe(GameObject obj) {
-        subscribedObjects.Remove(obj);
+    public static bool ConsumeInteract() {
+        bool oldInteract = interact;
+        interact = false;
+        return oldInteract;
     }
 }

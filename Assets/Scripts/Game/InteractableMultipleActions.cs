@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 abstract public class InteractableMultipleActions : BaseInteractable
@@ -28,5 +29,17 @@ abstract public class InteractableMultipleActions : BaseInteractable
             current = current.next;
         }
         if (returnToStartState) Player.I.playerState = startState;
+    }
+
+    public ActionBase FindLabel(string labelText) {
+        if (labelText == "") return null;
+        return actions
+            .Where(action => action is ActionLabel)
+            .FirstOrDefault(action => (action as ActionLabel).label == labelText);
+    }
+
+    public ActionBase FindLabelOrNext(string labelText, ActionBase action) {
+        if (labelText == "Next") return action.next;
+        return FindLabel(labelText);
     }
 }

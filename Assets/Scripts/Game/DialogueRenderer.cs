@@ -1,46 +1,67 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
 {
     public Transform dialogueRoot;
     public TMP_Text dialogueTextField;
     public float charsPerSecond = 10;
+    public Transform dialogueChoiceRoot;
 
     public bool DialogueDone { get; private set; } = false;
+    public int CurrentChoice { get; private set; } = -1;
 
     WaitForSeconds waitBetweenChars;
     bool dialogueDonePrinting = false;
+    readonly List<DialogueChoiceButton> dialogueChoiceButtons = new();
+    bool choiceNeeded = false;
 
     override protected void AwakeNew() {
         dialogueRoot.gameObject.SetActive(false);
-        // DontDestroyOnLoad(transform.parent.gameObject);
+        int index = 0;
+        foreach (Transform child in dialogueChoiceRoot) {
+            dialogueChoiceButtons.Add(new(index++, child));
+        }
     }
-
-    void OnEnable() { InputManager.I.Subscribe(gameObject); }
-    void OnDisable() { InputManager.I.Unsubscribe(gameObject); }
 
     void OnValidate() {
-        waitBetweenChars = new(1 / charsPerSecond);
+        waitBetweenChars = charsPerSecond == 0 ? new(0) : new(1 / charsPerSecond);
     }
 
-#pragma warning disable IDE0051, IDE0060
-    void OnInteract(InputValue input) {
-        if (dialogueDonePrinting) DialogueDone = true;
-    }
-#pragma warning restore IDE0051, IDE0060
-
-    public void StartDialogue(string text) {
-        DialogueDone = false;
-        StartCoroutine(PrintDialogue(text));
+    void Update() {
+        if (Player.I.playerState != PlayerState.Interacting) return;
+        if (!InputManager.ConsumeInteract()) return;
+        if (dialogueDonePrinting && (!choiceNeeded || CurrentChoice == -1)) DialogueDone = true;
     }
 
-    IEnumerator PrintDialogue(string text) {
+    void BaseStartDialogue() {
         dialogueTextField.text = "";
         dialogueRoot.gameObject.SetActive(true);
         dialogueDonePrinting = false;
+        DialogueDone = false;
+        choiceNeeded = false;
+        dialogueChoiceButtons.ForEach(button => {
+            button.Reset();
+            button.gameObject.SetActive(false);
+        });
+    }
+
+    public void StartDialogue(string text) {
+        BaseStartDialogue();
+        StartCoroutine(PrintDialogue(text));
+    }
+
+    public void StartDialogueWithChoices(string text, List<string> choices) {
+        BaseStartDialogue();
+        choiceNeeded = true;
+        StartCoroutine(PrintDialogueWithChoices(text, choices));
+    }
+
+    IEnumerator PrintDialogue(string text) {
         foreach (char ch in text) {
             dialogueTextField.text += ch;
             yield return waitBetweenChars;
@@ -48,13 +69,55 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
         dialogueDonePrinting = true;
     }
 
+    IEnumerator PrintDialogueWithChoices(string text, List<string> choices) {
+        yield return PrintDialogue(text);
+        for (int i = 0; i < Mathf.Min(dialogueChoiceButtons.Count, choices.Count); i++) {
+            DialogueChoiceButton dcb = dialogueChoiceButtons[i];
+            dcb.gameObject.SetActive(true);
+            dcb.SetChoice(choices[i], Choose);
+        }
+    }
+
+    void Choose(int ind) {
+        CurrentChoice = ind;
+        DialogueDone = true;
+    }
+
     public void Hide() {
         dialogueRoot.gameObject.SetActive(false);
     }
 
     public void HideForAction(ActionBase action) {
+        dialogueChoiceButtons.ForEach(button => {
+            button.Reset();
+            button.gameObject.SetActive(false);
+        });
         if (action == null || action is not IDialogRenderable) Hide();
     }
 }
 
 public interface IDialogRenderable {}
+
+class DialogueChoiceButton {
+    readonly int index;
+    public readonly GameObject gameObject;
+    readonly Button button;
+    readonly TMP_Text textField;
+
+    public DialogueChoiceButton(int index, Transform obj) {
+        this.index = index;
+        gameObject = obj.gameObject;
+        button = obj.GetComponentInChildren<Button>();
+        textField = obj.GetComponentInChildren<TMP_Text>();
+    }
+
+    public void Reset() {
+        button.onClick.RemoveAllListeners();
+        textField.text = "";
+    }
+
+    public void SetChoice(string text, Action<int> action) {
+        textField.text = text;
+        button.onClick.AddListener(() => action(index));
+    }
+}

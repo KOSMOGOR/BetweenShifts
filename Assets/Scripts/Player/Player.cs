@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class Player : SingletonMonoBehaviour<Player>
 {
     public PlayerState playerState = PlayerState.Free;

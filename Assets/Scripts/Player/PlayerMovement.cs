@@ -24,29 +24,14 @@ public class PlayerMovement : MonoBehaviour
         _collider = GetComponent<Collider>();
     }
 
-    void OnEnable() { InputManager.I.Subscribe(gameObject); }
-    void OnDisable() { InputManager.I.Unsubscribe(gameObject); }
-
-#pragma warning disable IDE0051, IDE0060
-    void OnMove(InputValue input) {
-        // moveInput = player.playerState == PlayerState.Free ? input.Get<Vector2>() : Vector2.zero;
-        moveInput = input.Get<Vector2>();
-    }
-
-    void OnInteract(InputValue input) {
-        if (player.playerState != PlayerState.Free) return;
-        List<GameObject> interactableObjects = interactColliders.GetObjects();
-        if (interactableObjects.Count == 0) return;
-        interactableObjects
-            // .Where(obj => obj.GetComponent<BaseInteractable>() is IPlayerInteractable)
-            .OrderBy(obj => Vector3.Distance(obj.transform.position, transform.position))
-            .First()
-            .GetComponent<BaseInteractable>().Interact();
-    }
-#pragma warning restore IDE0051, IDE0060
-
     void Update() {
         if (player.playerState != PlayerState.Free) return;
+        Interact();
+        Move();
+    }
+
+    void Move() {
+        moveInput = InputManager.move;
         Vector3 forward = mainCam.transform.forward, right = mainCam.transform.right;
         forward.y = 0; forward.Normalize();
         right.y = 0; right.Normalize();
@@ -61,6 +46,18 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hitInfo, 5)) {
             transform.position = hitInfo.point + transform.up * (_collider.bounds.size.y / 2);
         }
+    }
+
+    void Interact() {
+        if (player.playerState != PlayerState.Free) return;
+        if (!InputManager.interact) return;
+        List<GameObject> interactableObjects = interactColliders.GetObjects();
+        if (interactableObjects.Count == 0) return;
+        interactableObjects
+            // .Where(obj => obj.GetComponent<BaseInteractable>() is IPlayerInteractable)
+            .OrderBy(obj => Vector3.Distance(obj.transform.position, transform.position))
+            .First()
+            .GetComponent<BaseInteractable>().Interact();
     }
 }
 
