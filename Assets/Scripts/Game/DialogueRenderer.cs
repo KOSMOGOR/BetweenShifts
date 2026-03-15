@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
@@ -34,8 +35,9 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
 
     void Update() {
         if (Player.I.playerState != PlayerState.Interacting) return;
-        if (!InputManager.ConsumeInteract()) return;
-        if (dialogueDonePrinting && (!choiceNeeded || CurrentChoice == -1)) DialogueDone = true;
+        if (InputManager.ConsumeInteract() || Mouse.current.leftButton.wasPressedThisFrame) {
+            if (dialogueDonePrinting && (!choiceNeeded || CurrentChoice != -1)) DialogueDone = true;
+        }
     }
 
     void BaseStartDialogue() {
@@ -44,6 +46,7 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
         dialogueDonePrinting = false;
         DialogueDone = false;
         choiceNeeded = false;
+        CurrentChoice = -1;
         dialogueChoiceButtons.ForEach(button => {
             button.Reset();
             button.gameObject.SetActive(false);
