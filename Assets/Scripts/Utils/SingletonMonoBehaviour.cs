@@ -6,7 +6,7 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T: SingletonMonoBeh
 
     void Awake() {
         if (I != null) {
-            Destroy(gameObject);
+            Destroy(gameObject.transform.root.gameObject);
             return;
         }
         I = (T)this;

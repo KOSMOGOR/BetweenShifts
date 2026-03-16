@@ -31,6 +31,9 @@ public class CollidersList : MonoBehaviour
     }
 
     public List<GameObject> GetObjects() {
+        objects.Keys.ToList().ForEach(key => {
+            if (key == null) objects.Remove(key);
+        });
         return objects.Keys.ToList();
     }
 }
