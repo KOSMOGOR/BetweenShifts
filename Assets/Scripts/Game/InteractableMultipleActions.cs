@@ -16,7 +16,7 @@ abstract public class InteractableMultipleActions : BaseInteractable
         actions[^1].interactable = this;
     }
 
-    override public void Interact() {
+    public override void Interact() {
         StartCoroutine(InteractCoroutine(PlayerState.Interacting));
     }
 
@@ -31,6 +31,11 @@ abstract public class InteractableMultipleActions : BaseInteractable
         if (returnToStartState) Player.I.playerState = startState;
     }
 
+    public ActionBase TryGetAction(int ind) {
+        if (ind < 0 || ind >= actions.Count) return null;
+        return actions[ind];
+    }
+
     public ActionBase FindLabel(string labelText) {
         if (labelText == "") return null;
         return actions
@@ -39,7 +44,7 @@ abstract public class InteractableMultipleActions : BaseInteractable
     }
 
     public ActionBase FindLabelOrNext(string labelText, ActionBase action) {
-        if (labelText == "Next") return action.next;
+        if (labelText == "Next") return TryGetAction(actions.FindIndex(a => a == action) + 1);
         return FindLabel(labelText);
     }
 }

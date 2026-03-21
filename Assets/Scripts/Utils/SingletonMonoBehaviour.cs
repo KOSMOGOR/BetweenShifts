@@ -17,5 +17,5 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T: SingletonMonoBeh
     /// <summary>
     /// Use this instead of Awake()
     /// </summary>
-    virtual protected void AwakeNew() {}
+    protected virtual void AwakeNew() {}
 }

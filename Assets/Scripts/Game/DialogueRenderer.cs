@@ -16,12 +16,13 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
     public bool DialogueDone { get; private set; } = false;
     public int CurrentChoice { get; private set; } = -1;
 
+    bool dialogueActive = false;
     WaitForSeconds waitBetweenChars;
     bool dialogueDonePrinting = false;
     readonly List<DialogueChoiceButton> dialogueChoiceButtons = new();
     bool choiceNeeded = false;
 
-    override protected void AwakeNew() {
+    protected override void AwakeNew() {
         dialogueRoot.gameObject.SetActive(false);
         int index = 0;
         foreach (Transform child in dialogueChoiceRoot) {
@@ -34,23 +35,21 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
     }
 
     void Update() {
-        if (Player.I.playerState != PlayerState.Interacting) return;
+        if (!dialogueActive) return;
         if (InputManager.ConsumeInteract() || Mouse.current.leftButton.wasPressedThisFrame) {
             if (dialogueDonePrinting && (!choiceNeeded || CurrentChoice != -1)) DialogueDone = true;
         }
     }
 
     void BaseStartDialogue() {
+        dialogueActive = true;
         dialogueTextField.text = "";
         dialogueRoot.gameObject.SetActive(true);
         dialogueDonePrinting = false;
         DialogueDone = false;
         choiceNeeded = false;
         CurrentChoice = -1;
-        dialogueChoiceButtons.ForEach(button => {
-            button.Reset();
-            button.gameObject.SetActive(false);
-        });
+        dialogueChoiceButtons.ForEach(button => button.Reset());
     }
 
     public void StartDialogue(string text) {
@@ -88,13 +87,11 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
 
     public void Hide() {
         dialogueRoot.gameObject.SetActive(false);
+        dialogueActive = false;
     }
 
     public void HideForAction(ActionBase action) {
-        dialogueChoiceButtons.ForEach(button => {
-            button.Reset();
-            button.gameObject.SetActive(false);
-        });
+        dialogueChoiceButtons.ForEach(button => button.Reset());
         if (action == null || action is not IDialogRenderable) Hide();
     }
 }
@@ -117,6 +114,7 @@ class DialogueChoiceButton {
     public void Reset() {
         button.onClick.RemoveAllListeners();
         textField.text = "";
+        gameObject.SetActive(false);
     }
 
     public void SetChoice(string text, Action<int> action) {

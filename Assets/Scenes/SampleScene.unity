@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 14967474}
   - component: {fileID: 14967477}
   - component: {fileID: 14967476}
-  - component: {fileID: 14967475}
   m_Layer: 5
   m_Name: ItemList
   m_TagString: Untagged
@@ -157,32 +156,6 @@ RectTransform:
   m_AnchoredPosition: {x: -700, y: 0}
   m_SizeDelta: {x: 316, y: 904}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &14967475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 14967473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 30
-    m_Bottom: 0
-  m_ChildAlignment: 1
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
 --- !u!114 &14967476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,7 +386,7 @@ GameObject:
   - component: {fileID: 155816292}
   - component: {fileID: 155816293}
   m_Layer: 5
-  m_Name: DialogueRender
+  m_Name: DialogueRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -483,6 +456,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1937423357}
   - {fileID: 14967474}
   - {fileID: 2041258330}
   m_Father: {fileID: 347655379}
@@ -878,9 +852,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: []
-  inventoryItemUIPrefab: {fileID: 4080444586003861138, guid: 29225d9c7caa8784b9adecab6d761f2d, type: 3}
   inventoryRenderRoot: {fileID: 178341151}
+  inventoryItemUIPrefab: {fileID: 4080444586003861138, guid: 29225d9c7caa8784b9adecab6d761f2d, type: 3}
   inventoryItemList: {fileID: 14967474}
+  firstItemPosition: {fileID: 1937423357}
+  spacing: 70
   itemNameText: {fileID: 657558600}
   itemDescriptionText: {fileID: 794086278}
 --- !u!1 &410087039
@@ -2186,13 +2162,13 @@ MonoBehaviour:
   actions:
   - rid: 835268326032408673
   - rid: 835268326032408675
-  - rid: 835268326032408690
   - rid: 835268326032408674
+  - rid: 835268687253733470
   - rid: 835268326032408702
   - rid: 835268326032408697
   - rid: 835268326032408699
   - rid: 835268326032408704
-  - rid: 835268525104824418
+  - rid: 835268687253733522
   references:
     version: 2
     RefIds:
@@ -2210,10 +2186,6 @@ MonoBehaviour:
         trueLabel: Next
         falseLabel: Label1
         targetStateName: Init
-    - rid: 835268326032408690
-      type: {class: ActionDialogueText, ns: , asm: Assembly-CSharp}
-      data:
-        dialogueText: This is test dialogue 2
     - rid: 835268326032408697
       type: {class: ActionEnd, ns: , asm: Assembly-CSharp}
       data: 
@@ -2229,8 +2201,12 @@ MonoBehaviour:
       type: {class: ActionDialogueText, ns: , asm: Assembly-CSharp}
       data:
         dialogueText: You have already interacted
-    - rid: 835268525104824418
-      type: {class: ActionDialogueChoice, ns: , asm: Assembly-CSharp}
+    - rid: 835268687253733470
+      type: {class: ActionAddInventoryItem, ns: , asm: Assembly-CSharp}
+      data:
+        itemToAdd: {fileID: 11400000, guid: fda788d17cada594787d4ab93089697e, type: 2}
+    - rid: 835268687253733522
+      type: {class: ActionBranchDialogueChoice, ns: , asm: Assembly-CSharp}
       data:
         dialogueText: Test dialogue choice
         dialogueChoices:
@@ -2641,6 +2617,164 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1358614546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1358614551}
+  - component: {fileID: 1358614550}
+  - component: {fileID: 1358614549}
+  - component: {fileID: 1358614548}
+  - component: {fileID: 1358614547}
+  m_Layer: 0
+  m_Name: Cube (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1358614547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358614546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18f6b80356f402e4eaa78dca76935ee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: -1
+  states: []
+  actions:
+  - rid: 835268687253733464
+  - rid: 835268687253733465
+  - rid: 835268687253733469
+  - rid: 835268687253733468
+  - rid: 835268687253733466
+  - rid: 835268687253733467
+  references:
+    version: 2
+    RefIds:
+    - rid: 835268687253733464
+      type: {class: ActionDialogueText, ns: , asm: Assembly-CSharp}
+      data:
+        dialogueText: You need to select "Test Item 1"
+    - rid: 835268687253733465
+      type: {class: ActionBranchPromtItem, ns: , asm: Assembly-CSharp}
+      data:
+        trueLabel: Next
+        falseLabel: DontHaveItem
+        targetItem: {fileID: 11400000, guid: ab183e78e0e5a574ba7bec6e8be5af17, type: 2}
+    - rid: 835268687253733466
+      type: {class: ActionLabel, ns: , asm: Assembly-CSharp}
+      data:
+        label: DontHaveItem
+    - rid: 835268687253733467
+      type: {class: ActionDialogueText, ns: , asm: Assembly-CSharp}
+      data:
+        dialogueText: Sorry, it's wrong item
+    - rid: 835268687253733468
+      type: {class: ActionEnd, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 835268687253733469
+      type: {class: ActionDialogueText, ns: , asm: Assembly-CSharp}
+      data:
+        dialogueText: Good!
+--- !u!65 &1358614548
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358614546}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1358614549
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358614546}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 6cbe4fe2a29dad9498fb5dfff8f52394, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1358614550
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358614546}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1358614551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358614546}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4, y: 0.5, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1416401921
 GameObject:
   m_ObjectHideFlags: 0
@@ -3428,6 +3562,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916594325}
   m_CullTransparentMesh: 1
+--- !u!1 &1937423356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1937423357}
+  m_Layer: 5
+  m_Name: FirstItemPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1937423357
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937423356}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 178341151}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -700, y: 380}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1979495352
 GameObject:
   m_ObjectHideFlags: 0
@@ -3990,6 +4159,7 @@ SceneRoots:
   - {fileID: 5482314198372136986}
   - {fileID: 1416401922}
   - {fileID: 1122467035}
+  - {fileID: 1358614551}
   - {fileID: 4452060740965103320}
   - {fileID: 1883881481}
   - {fileID: 438079242}

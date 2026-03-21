@@ -10,7 +10,7 @@ abstract public class BaseSaveObject : MonoBehaviour
         SaveManager.I.SaveObject(this);
     }
 
-    virtual public string GetKey() {
+    public virtual string GetKey() {
         return $"{gameObject.scene.name}.{gameObject.name}";
     }
 

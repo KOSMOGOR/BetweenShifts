@@ -7,7 +7,7 @@ abstract public class BaseInteractable : MonoBehaviour
     public int currentState = -1;
     public List<InteractableState> states;
 
-    virtual public void Interact() {}
+    public virtual void Interact() {}
 
     protected void Awake() {
         if (states.Count > 0) currentState = 0;

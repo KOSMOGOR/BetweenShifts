@@ -4,19 +4,25 @@ using System.Collections.Generic;
 using System.Linq;
 
 [Serializable]
-public class ActionDialogueChoice : ActionBase, IDialogRenderable
+public class ActionBranchDialogueChoice : ActionBranchBase, IDialogRenderable
 {
     public string dialogueText = "Test dialogue choice";
     public List<ChoiceLabel> dialogueChoices = new() {new("Choice 1", "Label1"), new("Choice 2", "Label2")};
+    string targetLabel = null;
 
-    public override IEnumerator DoAction() {
+    protected override IEnumerator BeforeBranch() {
         DialogueRenderer.I.StartDialogueWithChoices(dialogueText, dialogueChoices.Select(choiceLabel => choiceLabel.choice).ToList());
         while (!DialogueRenderer.I.DialogueDone) yield return null;
-        string targetLabel = dialogueChoices[DialogueRenderer.I.CurrentChoice].label;
-        ActionBase nextAction = null;
-        if (interactable is InteractableMultipleActions multipleActions) nextAction = multipleActions.FindLabelOrNext(targetLabel, this);
-        next = nextAction;
+        targetLabel = dialogueChoices[DialogueRenderer.I.CurrentChoice].label;
+    }
+
+    protected override IEnumerator AfterBranch() {
         DialogueRenderer.I.HideForAction(next);
+        yield return null;
+    }
+
+    protected override string SelectNextBranch() {
+        return targetLabel;
     }
 
     [Serializable]

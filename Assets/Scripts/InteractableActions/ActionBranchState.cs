@@ -1,11 +1,11 @@
 using System;
 
 [Serializable]
-public class ActionBranchState : ActionBranchBase
+public class ActionBranchState : ActionBranchTrueFalse
 {
     public string targetStateName = "State";
 
-    override protected bool BranchCondition() {
+    protected override bool BranchCondition() {
         return interactable != null && interactable.GetCurrentState()?.name == targetStateName;
     }
 }

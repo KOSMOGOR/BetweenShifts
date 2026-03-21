@@ -7,12 +7,12 @@ public class SaveObjectState : BaseSaveObject
         interactable = GetComponent<BaseInteractable>();
     }
 
-    override public string GetSaveData() {
+    public override string GetSaveData() {
         if (interactable.currentState == -1 || interactable.currentState == 0) return null;
         return interactable.GetCurrentState().name;
     }
 
-    override protected void LoadInternal(string saveData) {
+    protected override void LoadInternal(string saveData) {
         interactable.ChangeState(saveData);
     }
 }
