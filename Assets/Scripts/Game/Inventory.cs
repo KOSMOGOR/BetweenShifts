@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 public class Inventory : SingletonMonoBehaviour<Inventory>
 {
     public List<InventoryItem> items = new();
+    public List<InventoryItem> craftableItems = new();
     public Transform inventoryRenderRoot;
+    public TMP_Text inventoryStateText;
     [Header("Inventory Items")]
     public GameObject inventoryItemUIPrefab;
     public Transform inventoryItemList;
@@ -27,6 +29,7 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
     }
 
     void Update() {
+        inventoryStateText.text = inventoryState.ToString();
         if (!isDisplayed) return;
         Move();
         Interact();
@@ -42,6 +45,24 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
         if (inventoryState == InventoryState.PromtToChoose && items.Count == 0 && PromtSelected == -1) PromtSelected = 0;
         if (InputManager.ConsumeInteract()) {
             if (inventoryState == InventoryState.PromtToChoose) PromtSelected = currentlySelected;
+            else if (inventoryState == InventoryState.Regular && items.Count >= 2) {
+                PromtSelected = currentlySelected;
+                inventoryState = InventoryState.PromtToCombine;
+            } else if (inventoryState == InventoryState.PromtToCombine) {
+                if (PromtSelected != -1 && currentlySelected != PromtSelected) {
+                    InventoryItem item1 = items[PromtSelected];
+                    InventoryItem item2 = items[currentlySelected];
+                    InventoryItem resultItem = CombineItems(item1, item2);
+                    if (resultItem) {
+                        RemoveItem(item1);
+                        RemoveItem(item2);
+                        AddItem(resultItem);
+                    }
+                    currentlySelected = items.Count - 1;
+                }
+                inventoryState = InventoryState.Regular;
+                UpdateSelected();
+            }
         }
     }
 
@@ -60,11 +81,13 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
 
     public void AddItem(InventoryItem item) {
         if (item != null && !items.Contains(item)) items.Add(item);
+        if (isDisplayed) UpdateItemRenderList();
         UpdateSelected();
     }
 
     public void RemoveItem(InventoryItem item) {
         items.Remove(item);
+        if (isDisplayed) UpdateItemRenderList();
         UpdateSelected();
     }
 
@@ -90,12 +113,16 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
         return inventoryItem;
     }
 
+    void UpdateItemRenderList() {
+        foreach (Transform child in inventoryItemList) Destroy(child.gameObject);
+        CreateItemsListUI();
+    }
+
     public void DisplayInventory(InventoryState state = InventoryState.Regular) {
         inventoryState = state;
         isDisplayed = true;
         PromtSelected = -1;
-        foreach (Transform child in inventoryItemList) Destroy(child.gameObject);
-        CreateItemsListUI();
+        UpdateItemRenderList();
         inventoryRenderRoot.gameObject.SetActive(true);
         currentlySelected = 0;
         UpdateSelected();
@@ -114,6 +141,13 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
             Player.I.playerState = PlayerState.Free;
             HideInventory();
         }
+    }
+
+    InventoryItem CombineItems(InventoryItem item1, InventoryItem item2) {
+        foreach (InventoryItem resultItem in craftableItems) {
+            if (resultItem.combineRecipe.Contains(item1) && resultItem.combineRecipe.Contains(item2)) return resultItem;
+        }
+        return null;
     }
 
     public enum InventoryState {
