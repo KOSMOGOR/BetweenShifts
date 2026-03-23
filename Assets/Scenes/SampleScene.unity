@@ -2811,7 +2811,7 @@ MonoBehaviour:
       data:
         trueLabel: Next
         falseLabel: DontHaveItem
-        targetItem: {fileID: 11400000, guid: ab183e78e0e5a574ba7bec6e8be5af17, type: 2}
+        targetItem: {fileID: 11400000, guid: 3d1438d1ff4a31a40abe70715bcde5be, type: 2}
     - rid: 835268687253733466
       type: {class: ActionLabel, ns: , asm: Assembly-CSharp}
       data:

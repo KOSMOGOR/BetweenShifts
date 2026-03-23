@@ -431,19 +431,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: -1
-  states:
-  - name: Init
-  - name: Interacted
+  states: []
   actions:
   - rid: 835268326032408673
-  - rid: 835268326032408675
   - rid: 835268326032408690
-  - rid: 835268326032408674
-  - rid: 835268326032408702
-  - rid: 835268326032408697
-  - rid: 835268326032408699
-  - rid: 835268326032408704
-  - rid: 835268525104824418
   references:
     version: 2
     RefIds:
@@ -451,44 +442,10 @@ MonoBehaviour:
       type: {class: ActionDialogueText, ns: , asm: Assembly-CSharp}
       data:
         dialogueText: This is test dialogue 1
-    - rid: 835268326032408674
-      type: {class: ActionAddInventoryItem, ns: , asm: Assembly-CSharp}
-      data:
-        itemToAdd: {fileID: 11400000, guid: ab183e78e0e5a574ba7bec6e8be5af17, type: 2}
-    - rid: 835268326032408675
-      type: {class: ActionBranchState, ns: , asm: Assembly-CSharp}
-      data:
-        trueLabel: Next
-        falseLabel: Label1
-        targetStateName: Init
     - rid: 835268326032408690
       type: {class: ActionDialogueText, ns: , asm: Assembly-CSharp}
       data:
         dialogueText: This is test dialogue 2
-    - rid: 835268326032408697
-      type: {class: ActionEnd, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 835268326032408699
-      type: {class: ActionLabel, ns: , asm: Assembly-CSharp}
-      data:
-        label: Label1
-    - rid: 835268326032408702
-      type: {class: ActionChangeState, ns: , asm: Assembly-CSharp}
-      data:
-        newStateName: Interacted
-    - rid: 835268326032408704
-      type: {class: ActionDialogueText, ns: , asm: Assembly-CSharp}
-      data:
-        dialogueText: You have already interacted
-    - rid: 835268525104824418
-      type: {class: ActionDialogueChoice, ns: , asm: Assembly-CSharp}
-      data:
-        dialogueText: Test dialogue choice
-        dialogueChoices:
-        - choice: Choice 1
-          label: Label1
-        - choice: Choice 2
-          label: Label2
 --- !u!65 &1122467032
 BoxCollider:
   m_ObjectHideFlags: 0
