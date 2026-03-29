@@ -10,14 +10,12 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5f;
     public CollidersList interactColliders;
 
-    Camera mainCam;
     CharacterController characterController;
     Vector2 moveInput;
     Player player;
     Collider _collider;
 
     void Awake() {
-        mainCam = Camera.main;
         characterController = GetComponent<CharacterController>();
         player = GetComponent<Player>();
         _collider = GetComponent<Collider>();
@@ -31,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Move() {
         moveInput = InputManager.move;
-        Vector3 forward = mainCam.transform.forward, right = mainCam.transform.right;
+        Vector3 forward = Camera.main.transform.forward, right = Camera.main.transform.right;
         forward.y = 0; forward.Normalize();
         right.y = 0; right.Normalize();
         Vector3 characterMoveInput = forward * moveInput.y + right * moveInput.x;

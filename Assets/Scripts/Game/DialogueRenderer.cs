@@ -28,6 +28,7 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
         foreach (Transform child in dialogueChoiceRoot) {
             dialogueChoiceButtons.Add(new(index++, child));
         }
+        OnValidate();
     }
 
     void OnValidate() {

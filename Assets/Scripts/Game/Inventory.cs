@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,7 +7,6 @@ using UnityEngine.InputSystem;
 public class Inventory : SingletonMonoBehaviour<Inventory>
 {
     public List<InventoryItem> items = new();
-    public List<InventoryItem> craftableItems = new();
     public Transform inventoryRenderRoot;
     public TMP_Text inventoryStateText;
     [Header("Inventory Items")]
@@ -21,11 +21,13 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
     bool isDisplayed = false;
     int currentlySelected = -1;
     InventoryState inventoryState;
+    List<InventoryItem> craftableItems = new();
     
     public int PromtSelected { get; private set; } = -1;
 
     protected override void AwakeNew() {
         inventoryRenderRoot.gameObject.SetActive(false);
+        craftableItems = Resources.LoadAll<InventoryItem>("InventoryItems/CraftableItems").ToList();
     }
 
     void Update() {
