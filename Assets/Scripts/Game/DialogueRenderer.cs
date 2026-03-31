@@ -95,31 +95,31 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
         dialogueChoiceButtons.ForEach(button => button.Reset());
         if (action == null || action is not IDialogRenderable) Hide();
     }
+
+    class DialogueChoiceButton {
+        readonly int index;
+        public readonly GameObject gameObject;
+        readonly Button button;
+        readonly TMP_Text textField;
+
+        public DialogueChoiceButton(int index, Transform obj) {
+            this.index = index;
+            gameObject = obj.gameObject;
+            button = obj.GetComponentInChildren<Button>();
+            textField = obj.GetComponentInChildren<TMP_Text>();
+        }
+
+        public void Reset() {
+            button.onClick.RemoveAllListeners();
+            textField.text = "";
+            gameObject.SetActive(false);
+        }
+
+        public void SetChoice(string text, Action<int> action) {
+            textField.text = text;
+            button.onClick.AddListener(() => action(index));
+        }
+    }
 }
 
 public interface IDialogRenderable {}
-
-class DialogueChoiceButton {
-    readonly int index;
-    public readonly GameObject gameObject;
-    readonly Button button;
-    readonly TMP_Text textField;
-
-    public DialogueChoiceButton(int index, Transform obj) {
-        this.index = index;
-        gameObject = obj.gameObject;
-        button = obj.GetComponentInChildren<Button>();
-        textField = obj.GetComponentInChildren<TMP_Text>();
-    }
-
-    public void Reset() {
-        button.onClick.RemoveAllListeners();
-        textField.text = "";
-        gameObject.SetActive(false);
-    }
-
-    public void SetChoice(string text, Action<int> action) {
-        textField.text = text;
-        button.onClick.AddListener(() => action(index));
-    }
-}

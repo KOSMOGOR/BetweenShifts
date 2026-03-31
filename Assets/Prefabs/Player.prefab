@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec71051da64247345a83ce259fdc946b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  withComponent: InteractableObject
+  withComponent: IPlayerInteractable
 --- !u!1 &8707494891292229063
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4885418507789751220}
+  - component: {fileID: 7402806868169716196}
   - component: {fileID: 7933247755987855500}
   - component: {fileID: 7696540092675527793}
   - component: {fileID: 413919629987239878}
@@ -112,7 +113,7 @@ GameObject:
   - component: {fileID: 6988016485827344397}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,6 +134,14 @@ Transform:
   - {fileID: 2161749210673844009}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &7402806868169716196
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8707494891292229063}
+  m_Enabled: 1
 --- !u!33 &7933247755987855500
 MeshFilter:
   m_ObjectHideFlags: 0

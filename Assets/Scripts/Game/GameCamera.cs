@@ -1,13 +1,23 @@
-using Unity.Cinemachine;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-[DefaultExecutionOrder(20)]
-public class CameraManager : SingletonMonoBehaviour<CameraManager>
+public class CameraManager : MonoBehaviour
 {
-    CinemachineCamera cinemachineCamera;
+    public string playerTag = "Player";
 
-    void Start() {
-        cinemachineCamera = GetComponentInChildren<CinemachineCamera>();
-        if (cinemachineCamera.Follow == null) cinemachineCamera.Follow = Player.I.transform;
+    Camera _camera;
+    static List<Camera> gameCameras = new();
+
+    void Awake() {
+        _camera = GetComponentInChildren<Camera>();
+        if (gameCameras.Count > 0) _camera.enabled = false;
+        gameCameras.Add(_camera);
+    }
+
+    void OnTriggerEnter(Collider other) {
+        if (other.CompareTag(playerTag)) {
+            foreach (Camera cam in gameCameras) cam.enabled = cam == _camera;
+        }
     }
 }
