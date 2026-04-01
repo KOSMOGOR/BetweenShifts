@@ -386,6 +386,7 @@ MonoBehaviour:
   - rid: 835268866630484104
   - rid: 835268866630484106
   - rid: 835268866630484105
+  - rid: 3879978659700801605
   references:
     version: 2
     RefIds:
@@ -404,6 +405,10 @@ MonoBehaviour:
       data:
         dialogueText: "\u041D\u0430 \u043A\u0440\u043E\u0432\u0430\u0442\u0438 \u043B\u0435\u0436\u0438\u0442
           \u043A\u0430\u0442\u0443\u0448\u043A\u0430 \u043D\u0438\u0442\u043E\u043A."
+    - rid: 3879978659700801605
+      type: {class: ActionChangeState, ns: , asm: Assembly-CSharp}
+      data:
+        newStateName: Taken
 --- !u!65 &629063961
 BoxCollider:
   m_ObjectHideFlags: 0
