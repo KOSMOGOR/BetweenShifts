@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Interact() {
         if (player.playerState != PlayerState.Free) return;
-        if (!InputManager.interact) return;
+        if (!InputManager.ConsumeInteract()) return;
         List<GameObject> interactableObjects = interactColliders.GetObjects();
         if (interactableObjects.Count == 0) return;
         interactableObjects
@@ -58,5 +58,5 @@ public class PlayerMovement : MonoBehaviour
     }
 }
 
-// for object which interactions can be started by player interaction
+// for objects which interactions can be started by player interaction
 interface IPlayerInteractable {}

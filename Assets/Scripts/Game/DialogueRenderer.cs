@@ -21,14 +21,20 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
     bool dialogueDonePrinting = false;
     readonly List<DialogueChoiceButton> dialogueChoiceButtons = new();
     bool choiceNeeded = false;
+    int availableChoices = 0;
+
+    // current dialogue data
+    string text;
+    List<string> choices = new();
+    Coroutine currentDialogueCoroutine;
 
     protected override void AwakeNew() {
+        OnValidate();
         dialogueRoot.gameObject.SetActive(false);
         int index = 0;
         foreach (Transform child in dialogueChoiceRoot) {
             dialogueChoiceButtons.Add(new(index++, child));
         }
-        OnValidate();
     }
 
     void OnValidate() {
@@ -37,8 +43,11 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
 
     void Update() {
         if (!dialogueActive) return;
+        if (Keyboard.current.wKey.wasPressedThisFrame) ChangeChoiceDelta(-1);
+        if (Keyboard.current.sKey.wasPressedThisFrame) ChangeChoiceDelta(1);
         if (InputManager.ConsumeInteract() || Mouse.current.leftButton.wasPressedThisFrame) {
-            if (dialogueDonePrinting && (!choiceNeeded || CurrentChoice != -1)) DialogueDone = true;
+            if (!dialogueDonePrinting && currentDialogueCoroutine != null) SkipPrint();
+            else if (dialogueDonePrinting && (!choiceNeeded || CurrentChoice != -1)) DialogueDone = true;
         }
     }
 
@@ -55,16 +64,23 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
 
     public void StartDialogue(string text) {
         BaseStartDialogue();
-        StartCoroutine(PrintDialogue(text));
+        this.text = text;
+        choices.Clear();
+        currentDialogueCoroutine = StartCoroutine(PrintDialogue());
     }
 
     public void StartDialogueWithChoices(string text, List<string> choices) {
         BaseStartDialogue();
         choiceNeeded = true;
-        StartCoroutine(PrintDialogueWithChoices(text, choices));
+        CurrentChoice = 0;
+        availableChoices = choices.Count;
+        dialogueChoiceButtons[0].SelectButton();
+        this.text = text;
+        this.choices = choices;
+        currentDialogueCoroutine = StartCoroutine(PrintDialogueWithChoices());
     }
 
-    IEnumerator PrintDialogue(string text) {
+    IEnumerator PrintDialogue() {
         foreach (char ch in text) {
             dialogueTextField.text += ch;
             yield return waitBetweenChars;
@@ -72,8 +88,21 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
         dialogueDonePrinting = true;
     }
 
-    IEnumerator PrintDialogueWithChoices(string text, List<string> choices) {
-        yield return PrintDialogue(text);
+    IEnumerator PrintDialogueWithChoices() {
+        yield return PrintDialogue();
+        for (int i = 0; i < Mathf.Min(dialogueChoiceButtons.Count, choices.Count); i++) {
+            DialogueChoiceButton dcb = dialogueChoiceButtons[i];
+            dcb.gameObject.SetActive(true);
+            dcb.SetChoice(choices[i], Choose);
+        }
+    }
+
+    void SkipPrint() {
+        if (currentDialogueCoroutine == null) return;
+        StopCoroutine(currentDialogueCoroutine);
+        currentDialogueCoroutine = null;
+        dialogueTextField.text = text;
+        dialogueDonePrinting = true;
         for (int i = 0; i < Mathf.Min(dialogueChoiceButtons.Count, choices.Count); i++) {
             DialogueChoiceButton dcb = dialogueChoiceButtons[i];
             dcb.gameObject.SetActive(true);
@@ -84,6 +113,11 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
     void Choose(int ind) {
         CurrentChoice = ind;
         DialogueDone = true;
+    }
+
+    void ChangeChoiceDelta(int delta) {
+        CurrentChoice = (CurrentChoice - delta + availableChoices) % availableChoices;
+        dialogueChoiceButtons[CurrentChoice].SelectButton();
     }
 
     public void Hide() {
@@ -118,6 +152,10 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
         public void SetChoice(string text, Action<int> action) {
             textField.text = text;
             button.onClick.AddListener(() => action(index));
+        }
+
+        public void SelectButton() {
+            button.Select();
         }
     }
 }
