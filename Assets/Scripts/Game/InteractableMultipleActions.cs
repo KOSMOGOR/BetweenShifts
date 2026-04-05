@@ -14,6 +14,8 @@ abstract public class InteractableMultipleActions : BaseInteractable
             actions[i].interactable = this;
         }
         actions[^1].interactable = this;
+        Outline outline = gameObject.AddComponent<Outline>();
+        outline.enabled = false;
     }
 
     public override void Interact() {
@@ -29,6 +31,8 @@ abstract public class InteractableMultipleActions : BaseInteractable
             current = current.next;
         }
         if (returnToStartState) Player.I.playerState = startState;
+        InteractableState state = states[currentState];
+        if (state?.terminal == true) gameObject.SetActive(false);
     }
 
     public ActionBase TryGetAction(int ind) {

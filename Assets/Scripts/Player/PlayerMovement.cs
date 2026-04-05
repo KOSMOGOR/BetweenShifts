@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 moveInput;
     Player player;
     Collider _collider;
+    BaseInteractable currentlySelectedInteractable;
 
     void Awake() {
         characterController = GetComponent<CharacterController>();
@@ -47,14 +48,17 @@ public class PlayerMovement : MonoBehaviour
 
     void Interact() {
         if (player.playerState != PlayerState.Free) return;
-        if (!InputManager.ConsumeInteract()) return;
         List<GameObject> interactableObjects = interactColliders.GetObjects();
-        if (interactableObjects.Count == 0) return;
-        interactableObjects
-            // .Where(obj => obj.GetComponent<BaseInteractable>() is IPlayerInteractable)
+        GameObject selectedObject = interactableObjects
             .OrderBy(obj => Vector3.Distance(obj.transform.position, transform.position))
-            .First()
-            .GetComponent<BaseInteractable>().Interact();
+            .FirstOrDefault();
+        BaseInteractable selectedInteractable = selectedObject == null ? null : selectedObject.GetComponent<BaseInteractable>();
+        if (selectedInteractable != currentlySelectedInteractable) {
+            if (currentlySelectedInteractable != null && currentlySelectedInteractable.TryGetComponent(out Outline outline1)) outline1.enabled = false;
+            if (selectedInteractable != null && selectedInteractable.TryGetComponent(out Outline outline2)) outline2.enabled = true;
+            currentlySelectedInteractable = selectedInteractable;
+        }
+        if (currentlySelectedInteractable != null && InputManager.ConsumeInteract()) currentlySelectedInteractable.Interact();
     }
 }
 

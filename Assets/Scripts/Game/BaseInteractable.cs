@@ -30,4 +30,5 @@ abstract public class BaseInteractable : MonoBehaviour
 public class InteractableState
 {
     public string name = "StateName";
+    public bool terminal = false;
 }

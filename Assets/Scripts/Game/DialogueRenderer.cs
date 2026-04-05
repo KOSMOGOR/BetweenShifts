@@ -12,6 +12,7 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
     public TMP_Text dialogueTextField;
     public float charsPerSecond = 10;
     public Transform dialogueChoiceRoot;
+    public Transform dialogueSpeakerBox;
 
     public bool DialogueDone { get; private set; } = false;
     public int CurrentChoice { get; private set; } = -1;
@@ -22,10 +23,12 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
     readonly List<DialogueChoiceButton> dialogueChoiceButtons = new();
     bool choiceNeeded = false;
     int availableChoices = 0;
+    TMP_Text dialogueSpeakerField;
 
     // current dialogue data
     string text;
     List<string> choices = new();
+    string speaker;
     Coroutine currentDialogueCoroutine;
 
     protected override void AwakeNew() {
@@ -35,6 +38,7 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
         foreach (Transform child in dialogueChoiceRoot) {
             dialogueChoiceButtons.Add(new(index++, child));
         }
+        dialogueSpeakerField = dialogueSpeakerBox.GetComponentInChildren<TMP_Text>();
     }
 
     void OnValidate() {
@@ -43,8 +47,10 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
 
     void Update() {
         if (!dialogueActive) return;
-        if (Keyboard.current.wKey.wasPressedThisFrame) ChangeChoiceDelta(-1);
-        if (Keyboard.current.sKey.wasPressedThisFrame) ChangeChoiceDelta(1);
+        if (availableChoices > 0) {
+            if (Keyboard.current.wKey.wasPressedThisFrame) ChangeChoiceDelta(-1);
+            if (Keyboard.current.sKey.wasPressedThisFrame) ChangeChoiceDelta(1);
+        }
         if (InputManager.ConsumeInteract() || Mouse.current.leftButton.wasPressedThisFrame) {
             if (!dialogueDonePrinting && currentDialogueCoroutine != null) SkipPrint();
             else if (dialogueDonePrinting && (!choiceNeeded || CurrentChoice != -1)) DialogueDone = true;
@@ -59,17 +65,20 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
         DialogueDone = false;
         choiceNeeded = false;
         CurrentChoice = -1;
+        availableChoices = 0;
         dialogueChoiceButtons.ForEach(button => button.Reset());
+        dialogueSpeakerBox.gameObject.SetActive(false);
     }
 
-    public void StartDialogue(string text) {
+    public void StartDialogue(string text, string speaker = "") {
         BaseStartDialogue();
         this.text = text;
+        this.speaker = speaker;
         choices.Clear();
         currentDialogueCoroutine = StartCoroutine(PrintDialogue());
     }
 
-    public void StartDialogueWithChoices(string text, List<string> choices) {
+    public void StartDialogueWithChoices(string text, List<string> choices, string speaker = "") {
         BaseStartDialogue();
         choiceNeeded = true;
         CurrentChoice = 0;
@@ -77,10 +86,15 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
         dialogueChoiceButtons[0].SelectButton();
         this.text = text;
         this.choices = choices;
+        this.speaker = speaker;
         currentDialogueCoroutine = StartCoroutine(PrintDialogueWithChoices());
     }
 
     IEnumerator PrintDialogue() {
+        if (!string.IsNullOrEmpty(speaker)) {
+            dialogueSpeakerBox.gameObject.SetActive(true);
+            dialogueSpeakerField.text = speaker;
+        }
         foreach (char ch in text) {
             dialogueTextField.text += ch;
             yield return waitBetweenChars;

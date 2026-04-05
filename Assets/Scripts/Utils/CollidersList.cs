@@ -6,6 +6,7 @@ using UnityEngine;
 public class CollidersList : MonoBehaviour
 {
     public string withComponent;
+    public bool returnOnlyActive = true;
     readonly Dictionary<GameObject, int> objects = new();
 
     Type componentType;
@@ -34,6 +35,6 @@ public class CollidersList : MonoBehaviour
         objects.Keys.ToList().ForEach(key => {
             if (key == null) objects.Remove(key);
         });
-        return objects.Keys.ToList();
+        return objects.Keys.Where(go => go.activeInHierarchy || !returnOnlyActive).ToList();
     }
 }

@@ -8,10 +8,11 @@ public class ActionBranchDialogueChoice : ActionBranchBase, IDialogRenderable
 {
     public string dialogueText = "Test dialogue choice";
     public List<ChoiceLabel> dialogueChoices = new() {new("Choice 1", "Label1"), new("Choice 2", "Label2")};
+    public string dialogueSpeaker = "TestSpeaker";
     string targetLabel = null;
 
     protected override IEnumerator BeforeBranch() {
-        DialogueRenderer.I.StartDialogueWithChoices(dialogueText, dialogueChoices.Select(choiceLabel => choiceLabel.choice).ToList());
+        DialogueRenderer.I.StartDialogueWithChoices(dialogueText, dialogueChoices.Select(choiceLabel => choiceLabel.choice).ToList(), dialogueSpeaker);
         while (!DialogueRenderer.I.DialogueDone) yield return null;
         targetLabel = dialogueChoices[DialogueRenderer.I.CurrentChoice].label;
     }
