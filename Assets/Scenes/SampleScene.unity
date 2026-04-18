@@ -248,6 +248,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1218090260653767816, guid: ec2d5b8f1178f00469f91bcd80cc5edc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1218090260653767816, guid: ec2d5b8f1178f00469f91bcd80cc5edc, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1218090260653767816, guid: ec2d5b8f1178f00469f91bcd80cc5edc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1532266606832635670, guid: ec2d5b8f1178f00469f91bcd80cc5edc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1532266606832635670, guid: ec2d5b8f1178f00469f91bcd80cc5edc, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1532266606832635670, guid: ec2d5b8f1178f00469f91bcd80cc5edc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6874191705092010346, guid: ec2d5b8f1178f00469f91bcd80cc5edc, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -331,6 +355,30 @@ PrefabInstance:
     - target: {fileID: 7212336933447019456, guid: ec2d5b8f1178f00469f91bcd80cc5edc, type: 3}
       propertyPath: m_Name
       value: Renderers
+      objectReference: {fileID: 0}
+    - target: {fileID: 7989893019031930196, guid: ec2d5b8f1178f00469f91bcd80cc5edc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7989893019031930196, guid: ec2d5b8f1178f00469f91bcd80cc5edc, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7989893019031930196, guid: ec2d5b8f1178f00469f91bcd80cc5edc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689950212691364637, guid: ec2d5b8f1178f00469f91bcd80cc5edc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689950212691364637, guid: ec2d5b8f1178f00469f91bcd80cc5edc, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689950212691364637, guid: ec2d5b8f1178f00469f91bcd80cc5edc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -543,6 +591,7 @@ MonoBehaviour:
   - rid: 835268326032408699
   - rid: 835268326032408704
   - rid: 835268687253733522
+  defaultDialogueCharacter: {fileID: 0}
   references:
     version: 2
     RefIds:
@@ -550,7 +599,7 @@ MonoBehaviour:
       type: {class: ActionDialogueText, ns: , asm: Assembly-CSharp}
       data:
         dialogueText: This is test dialogue 1
-        dialogueSpeaker: TestSpeaker
+        dialogueSpeaker: {fileID: 0}
     - rid: 835268326032408674
       type: {class: ActionAddInventoryItem, ns: , asm: Assembly-CSharp}
       data:
@@ -576,7 +625,7 @@ MonoBehaviour:
       type: {class: ActionDialogueText, ns: , asm: Assembly-CSharp}
       data:
         dialogueText: You have already interacted
-        dialogueSpeaker: TestSpeaker
+        dialogueSpeaker: {fileID: 0}
     - rid: 835268687253733470
       type: {class: ActionAddInventoryItem, ns: , asm: Assembly-CSharp}
       data:
@@ -590,7 +639,7 @@ MonoBehaviour:
           label: Label1
         - choice: Choice 2
           label: Label2
-        dialogueSpeaker: TestSpeaker
+        dialogueSpeaker: {fileID: 0}
 --- !u!65 &1122467032
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -934,6 +983,7 @@ MonoBehaviour:
   - rid: 835268687253733468
   - rid: 835268687253733466
   - rid: 835268687253733467
+  defaultDialogueCharacter: {fileID: 0}
   references:
     version: 2
     RefIds:
@@ -941,7 +991,7 @@ MonoBehaviour:
       type: {class: ActionDialogueText, ns: , asm: Assembly-CSharp}
       data:
         dialogueText: You need to select "Combine Item 1"
-        dialogueSpeaker: TestSpeaker
+        dialogueSpeaker: {fileID: 0}
     - rid: 835268687253733465
       type: {class: ActionBranchPromtItem, ns: , asm: Assembly-CSharp}
       data:
@@ -957,7 +1007,7 @@ MonoBehaviour:
       type: {class: ActionDialogueText, ns: , asm: Assembly-CSharp}
       data:
         dialogueText: Sorry, it's wrong item
-        dialogueSpeaker: TestSpeaker
+        dialogueSpeaker: {fileID: 0}
     - rid: 835268687253733468
       type: {class: ActionEnd, ns: , asm: Assembly-CSharp}
       data: 
@@ -965,7 +1015,7 @@ MonoBehaviour:
       type: {class: ActionDialogueText, ns: , asm: Assembly-CSharp}
       data:
         dialogueText: Good!
-        dialogueSpeaker: TestSpeaker
+        dialogueSpeaker: {fileID: 0}
 --- !u!65 &1358614548
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
     public float charsPerSecond = 10;
     public Transform dialogueChoiceRoot;
     public Transform dialogueSpeakerBox;
+    public Image dialogueSpreakerImage;
 
     public bool DialogueDone { get; private set; } = false;
     public int CurrentChoice { get; private set; } = -1;
@@ -28,7 +29,7 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
     // current dialogue data
     string text;
     List<string> choices = new();
-    string speaker;
+    string speakerName;
     Coroutine currentDialogueCoroutine;
 
     protected override void AwakeNew() {
@@ -70,15 +71,19 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
         dialogueSpeakerBox.gameObject.SetActive(false);
     }
 
-    public void StartDialogue(string text, string speaker = "") {
+    public void StartDialogue(string text, DialogueCharacter speaker = null) {
         BaseStartDialogue();
         this.text = text;
-        this.speaker = speaker;
+        speakerName = speaker.characterName ?? "";
+        if (speaker != null && speaker.characterSprite != null) {
+            dialogueSpreakerImage.enabled = true;
+            dialogueSpreakerImage.sprite = speaker.characterSprite;
+        } else dialogueSpreakerImage.enabled = false;
         choices.Clear();
         currentDialogueCoroutine = StartCoroutine(PrintDialogue());
     }
 
-    public void StartDialogueWithChoices(string text, List<string> choices, string speaker = "") {
+    public void StartDialogueWithChoices(string text, List<string> choices, DialogueCharacter speaker = null) {
         BaseStartDialogue();
         choiceNeeded = true;
         CurrentChoice = 0;
@@ -86,14 +91,18 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
         dialogueChoiceButtons[0].SelectButton();
         this.text = text;
         this.choices = choices;
-        this.speaker = speaker;
+        speakerName = speaker.characterName ?? "";
+        if (speaker != null && speaker.characterSprite != null) {
+            dialogueSpreakerImage.enabled = true;
+            dialogueSpreakerImage.sprite = speaker.characterSprite;
+        } else dialogueSpreakerImage.enabled = false;
         currentDialogueCoroutine = StartCoroutine(PrintDialogueWithChoices());
     }
 
     IEnumerator PrintDialogue() {
-        if (!string.IsNullOrEmpty(speaker)) {
+        if (!string.IsNullOrEmpty(speakerName)) {
             dialogueSpeakerBox.gameObject.SetActive(true);
-            dialogueSpeakerField.text = speaker;
+            dialogueSpeakerField.text = speakerName;
         }
         foreach (char ch in text) {
             dialogueTextField.text += ch;
