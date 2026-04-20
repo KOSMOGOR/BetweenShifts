@@ -6,6 +6,7 @@ using UnityEngine;
 abstract public class InteractableMultipleActions : BaseInteractable
 {
     [SerializeReference, SubclassSelector] public List<ActionBase> actions;
+    public DialogueCharacter defaultDialogueCharacter;
 
     new void Awake() {
         base.Awake();
