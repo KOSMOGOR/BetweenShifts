@@ -12,5 +12,6 @@ public class InteractableDoor : BaseInteractable, IPlayerInteractable
     public override void Interact() {
         if (!targetScene.HasScene()) return;
         SceneTransitionManager.I.StartSceneTransition(targetScene, targetDoorNum);
+        SoundManager.I.PlaySound(GameSound.Door);
     }
 }

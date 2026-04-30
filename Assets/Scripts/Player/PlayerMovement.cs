@@ -22,6 +22,10 @@ public class PlayerMovement : MonoBehaviour
         _collider = GetComponent<Collider>();
     }
 
+    void OnDisable() {
+        SoundManager.I.StopLoopSound(GameLoopSound.Walking);
+    }
+
     void Update() {
         if (player.playerState != PlayerState.Free) return;
         Interact();
@@ -30,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Move() {
         moveInput = InputManager.move;
+        PlayWalkingSound(moveInput);
         Vector3 forward = Camera.main.transform.forward, right = Camera.main.transform.right;
         forward.y = 0; forward.Normalize();
         right.y = 0; right.Normalize();
@@ -59,6 +64,10 @@ public class PlayerMovement : MonoBehaviour
             currentlySelectedInteractable = selectedInteractable;
         }
         if (currentlySelectedInteractable != null && InputManager.ConsumeInteract()) currentlySelectedInteractable.Interact();
+    }
+
+    void PlayWalkingSound(Vector2 moveInput) {
+        SoundManager.I.SetLoopSound(GameLoopSound.Walking, moveInput.sqrMagnitude > 0);
     }
 }
 

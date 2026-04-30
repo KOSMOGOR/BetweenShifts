@@ -69,6 +69,7 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
         availableChoices = 0;
         dialogueChoiceButtons.ForEach(button => button.Reset());
         dialogueSpeakerBox.gameObject.SetActive(false);
+        SoundManager.I.StartLoopSound(GameLoopSound.Typing);
     }
 
     public void StartDialogue(string text, DialogueCharacter speaker = null) {
@@ -109,6 +110,7 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
             yield return waitBetweenChars;
         }
         dialogueDonePrinting = true;
+        SoundManager.I.StopLoopSound(GameLoopSound.Typing);
     }
 
     IEnumerator PrintDialogueWithChoices() {
@@ -131,6 +133,7 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
             dcb.gameObject.SetActive(true);
             dcb.SetChoice(choices[i], Choose);
         }
+        SoundManager.I.StopLoopSound(GameLoopSound.Typing);
     }
 
     void Choose(int ind) {

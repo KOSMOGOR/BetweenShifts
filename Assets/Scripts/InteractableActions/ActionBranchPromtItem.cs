@@ -16,7 +16,10 @@ public class ActionBranchPromtItem : ActionBranchTrueFalse
     }
 
     protected override IEnumerator AfterBranch() {
-        if (removeRightItemAfterPromt && selectedItem == targetItem) Inventory.I.RemoveItem(targetItem);
+        if (selectedItem == targetItem) {
+            if (removeRightItemAfterPromt) Inventory.I.RemoveItem(targetItem);
+            SoundManager.I.PlaySound(GameSound.GhostGiveItem);
+        }
         yield return null;
     }
 

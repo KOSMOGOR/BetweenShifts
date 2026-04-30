@@ -59,6 +59,9 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
                         RemoveItem(item1);
                         RemoveItem(item2);
                         AddItem(resultItem);
+                        SoundManager.I.PlaySound(GameSound.CombineSuccess);
+                    } else {
+                        SoundManager.I.PlaySound(GameSound.CombineFail);
                     }
                     currentlySelected = items.Count - 1;
                 }
