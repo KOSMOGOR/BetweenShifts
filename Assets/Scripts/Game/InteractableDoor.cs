@@ -9,6 +9,12 @@ public class InteractableDoor : BaseInteractable, IPlayerInteractable
     public int thisDoorNum = 0;
     public Transform playerPosition;
 
+    protected override void Awake() {
+        base.Awake();
+        Outline outline = gameObject.AddComponent<Outline>();
+        outline.enabled = false;
+    }
+
     public override void Interact() {
         if (!targetScene.HasScene()) return;
         SceneTransitionManager.I.StartSceneTransition(targetScene, targetDoorNum);

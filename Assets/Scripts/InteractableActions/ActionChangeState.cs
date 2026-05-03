@@ -7,7 +7,7 @@ public class ActionChangeState : ActionBase
     public string newStateName = "State";
 
     public override IEnumerator DoAction() {
-        if (interactable != null) interactable.ChangeState(newStateName);
+        if (interactable != null) interactable.ChangeState(newStateName, false);
         yield return null;
     }
 }

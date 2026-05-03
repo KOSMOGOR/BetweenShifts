@@ -14,6 +14,5 @@ public class SaveObjectState : BaseSaveObject
 
     protected override void LoadInternal(string saveData) {
         interactable.ChangeState(saveData);
-        if (interactable.GetCurrentState().terminal) interactable.gameObject.SetActive(false);
     }
 }

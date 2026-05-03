@@ -8,7 +8,7 @@ abstract public class InteractableMultipleActions : BaseInteractable
     [SerializeReference, SubclassSelector] public List<ActionBase> actions;
     public DialogueCharacter defaultDialogueCharacter;
 
-    new void Awake() {
+    protected override void Awake() {
         base.Awake();
         for (int i = 0; i < actions.Count - 1; i++) {
             actions[i].next = actions[i + 1];
@@ -32,8 +32,7 @@ abstract public class InteractableMultipleActions : BaseInteractable
             current = current.next;
         }
         if (returnToStartState) Player.I.playerState = startState;
-        InteractableState state = GetCurrentState();
-        if (state?.terminal == true) gameObject.SetActive(false);
+        CheckForTerminal();
     }
 
     public ActionBase TryGetAction(int ind) {

@@ -9,20 +9,26 @@ abstract public class BaseInteractable : MonoBehaviour
 
     public virtual void Interact() {}
 
-    protected void Awake() {
+    protected virtual void Awake() {
         if (states.Count > 0) currentState = 0;
     }
 
     public InteractableState GetCurrentState() {
         return states[currentState];
     }
-    public void ChangeState(string stateName) {
+
+    public void ChangeState(string stateName, bool checkForTerminal = true) {
         for (int i = 0; i < states.Count; i++)
             if (states[i].name == stateName) {
                 currentState = i;
+                if (checkForTerminal) CheckForTerminal();
                 return;
             }
         currentState = -1;
+    }
+
+    public void CheckForTerminal() {
+        if (GetCurrentState().terminal) gameObject.SetActive(false);
     }
 }
 

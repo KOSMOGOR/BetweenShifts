@@ -27,26 +27,29 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Update() {
-        if (player.playerState != PlayerState.Free) return;
-        Interact();
-        Move();
+        if (player.playerState == PlayerState.Free) {
+            Interact();
+            Move();
+        }
+        StickToGround();
+        SetWalkingSound(moveInput);
     }
 
     void Move() {
         moveInput = InputManager.move;
-        PlayWalkingSound(moveInput);
-        Vector3 forward = Camera.main.transform.forward, right = Camera.main.transform.right;
-        forward.y = 0; forward.Normalize();
-        right.y = 0; right.Normalize();
-        Vector3 characterMoveInput = forward * moveInput.y + right * moveInput.x;
-        characterController.Move(characterMoveInput.normalized * (speed * Time.deltaTime));
-        transform.Rotate(Vector3.up, Vector3.SignedAngle(transform.forward, characterMoveInput, Vector3.up));
-        StickToGround();
+        if (Camera.main != null) {
+            Vector3 forward = Camera.main.transform.forward, right = Camera.main.transform.right;
+            forward.y = 0; forward.Normalize();
+            right.y = 0; right.Normalize();
+            Vector3 characterMoveInput = forward * moveInput.y + right * moveInput.x;
+            characterController.Move(characterMoveInput.normalized * (speed * Time.deltaTime));
+            transform.Rotate(Vector3.up, Vector3.SignedAngle(transform.forward, characterMoveInput, Vector3.up));
+        }
     }
 
-    void StickToGround() {
+    public void StickToGround() {
         Ray ray = new(transform.position, -transform.up);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, 5)) {
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 5, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore)) {
             transform.position = hitInfo.point + transform.up * (_collider.bounds.size.y / 2);
         }
     }
@@ -66,8 +69,8 @@ public class PlayerMovement : MonoBehaviour
         if (currentlySelectedInteractable != null && InputManager.ConsumeInteract()) currentlySelectedInteractable.Interact();
     }
 
-    void PlayWalkingSound(Vector2 moveInput) {
-        SoundManager.I.SetLoopSound(GameLoopSound.Walking, moveInput.sqrMagnitude > 0);
+    void SetWalkingSound(Vector2 moveInput) {
+        SoundManager.I.SetLoopSound(GameLoopSound.Walking, player.playerState == PlayerState.Free && moveInput.sqrMagnitude > 0);
     }
 }
 
