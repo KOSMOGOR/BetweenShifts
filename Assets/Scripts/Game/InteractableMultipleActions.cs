@@ -32,7 +32,7 @@ abstract public class InteractableMultipleActions : BaseInteractable
             current = current.next;
         }
         if (returnToStartState) Player.I.playerState = startState;
-        InteractableState state = states[currentState];
+        InteractableState state = GetCurrentState();
         if (state?.terminal == true) gameObject.SetActive(false);
     }
 
