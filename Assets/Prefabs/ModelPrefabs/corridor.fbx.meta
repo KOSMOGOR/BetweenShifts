@@ -1,0 +1,552 @@
+fileFormatVersion: 2
+guid: 733178772c137c04db9ca032666d9eab
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AsylumEntranceDoors_MTL
+    second: {fileID: 2100000, guid: eb6293be265cf564f9ac3890727e545f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chair
+    second: {fileID: 2100000, guid: 9bee9b41be2548b48ac46d66745f3a62, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Geso_corredor
+    second: {fileID: 2100000, guid: 0987133f558f8c047a7cdab08ad3b4cc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat.003
+    second: {fileID: 2100000, guid: d4fb3f21be475f54a865f200b092739c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat.004
+    second: {fileID: 2100000, guid: 88460429e92e148479bc6f3e77f4a1bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat.005
+    second: {fileID: 2100000, guid: 07f0c32c6107b3f44b5f2297c5e63e5f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat.1
+    second: {fileID: 2100000, guid: 5a28300d392367e479f92bfaa50c4569, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat.2
+    second: {fileID: 2100000, guid: 8845f34684d7f764dbb2f6e81680d5d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: caf5b4fbf810cf24a89854053d2ced48, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.006
+    second: {fileID: 2100000, guid: 2e706792a2af770439aedb9c8f811fdc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Old_Dusty_Bookshelf_Mat
+    second: {fileID: 2100000, guid: 9e5233d83f36e964096427bc25346ab5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Old_Dusty_Bookshelf_Spiderwebs_Mat
+    second: {fileID: 2100000, guid: 8b5dacfd270306f4f928b450802356e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plant_Albedo
+    second: {fileID: 2100000, guid: 4b0c1149f725e7145a6199e4c06f0cf1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pot_Albedo
+    second: {fileID: 2100000, guid: 201158c2b1868e24cad4cb69c0169bac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Scene_-_Root
+    second: {fileID: 2100000, guid: d26f53e7b2b05f94c96fcfebfd5c8c13, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Scene_-_Root.001
+    second: {fileID: 2100000, guid: a643c2fc1d98c084895e865eca34f90c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Scene_-_Root.003
+    second: {fileID: 2100000, guid: 4844b0925fadffc4cbc9fc4df6e4e517, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Scene_-_Root.004
+    second: {fileID: 2100000, guid: 2b6cb354ffa225d42a4edbeb38b06ae0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Scene_-_Root.005
+    second: {fileID: 2100000, guid: af369d6e3a55b6d429ad2e04fa41e84a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Scene_-_Root.006
+    second: {fileID: 2100000, guid: d6501704a7fc8954cbaca8554f59fad9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Scene_-_Root.007
+    second: {fileID: 2100000, guid: af7a016f10c691444abe4a7daaed1ed8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Scene_-_Root.012
+    second: {fileID: 2100000, guid: 91ef2b322ae75fd4f854747a88695627, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Scene_-_Root.013
+    second: {fileID: 2100000, guid: 1dc339a35c83ffb4e98f1c1a1a75e2f4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Scene_-_Root.014
+    second: {fileID: 2100000, guid: cfe9cb3fa8dc4e949b38e53589938621, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallLamp-LightBulb_MTL
+    second: {fileID: 2100000, guid: 05196d83eddb62d4684d34d245974be7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallLamp-LightBulb_MTL.001
+    second: {fileID: 2100000, guid: 634b941425862f643a81c5a1cb87362b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallLamp_MTL
+    second: {fileID: 2100000, guid: 981b3e31008a372428ee5030c6c11dcd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallLamp_MTL.001
+    second: {fileID: 2100000, guid: 705a2ce79d0b93e44a130862d57dab21, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallLamp_MTL.002
+    second: {fileID: 2100000, guid: 7d606a07ec20405448f96c8844fa59c3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallLamp_MTL.003
+    second: {fileID: 2100000, guid: 0381969acd26d8949b18329ac43ff88b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallLamp_MTL.004
+    second: {fileID: 2100000, guid: 6295ddfc48a82854ea18a3cc83963275, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallLamp_MTL.005
+    second: {fileID: 2100000, guid: 61419c005615f05478f3aa8faa6ec051, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallLamp_MTL.006
+    second: {fileID: 2100000, guid: ec30ab17fa2b53b4ca7c7da0b792f159, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallLamp_MTL.007
+    second: {fileID: 2100000, guid: c59f8cece1c66d24db24c60a79ad333d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallLamp_MTL.008
+    second: {fileID: 2100000, guid: 183cab7504146ec4fb09d75a9b5ac2bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallLamp_MTL.010
+    second: {fileID: 2100000, guid: de08fe17b8596c8438d32af4b29d04dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallLamp_MTL.011
+    second: {fileID: 2100000, guid: 67950542f4db84f47b05d48d553660be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallLamp_MTL.012
+    second: {fileID: 2100000, guid: c24f4db218c85924f92428aa620c46e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WallLamp_MTL.013
+    second: {fileID: 2100000, guid: 8ef6dd8799a7eef4e932df40fad4b57b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodPalette
+    second: {fileID: 2100000, guid: 094356682ea7c984e9d1da623d6c98d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodPalette.001
+    second: {fileID: 2100000, guid: c58f4201efd1aa5479ba3f354343231b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodPalette.002
+    second: {fileID: 2100000, guid: e806ac2d80e7d3d41b48f4b9b07e76b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brick-heap-x_u1_v1
+    second: {fileID: 2100000, guid: 4333a8e03fe90614392977a666c00a92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brick-heap-x_u1_v1.001
+    second: {fileID: 2100000, guid: f7952ab8ef9f7ac40a58951c79f90361, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brick-heap-x_u1_v1.002
+    second: {fileID: 2100000, guid: 1aee81f3f8ceb964c82642c23ddfc791, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brick-heap-x_u1_v1.003
+    second: {fileID: 2100000, guid: bc6a7d51c04a96042acb04cbead45701, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: defaultMat
+    second: {fileID: 2100000, guid: cf8359cd2a065c54ca12b6f5263a5710, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: material
+    second: {fileID: 2100000, guid: 205314f06334bb64ca2397b48dfc0410, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: material.001
+    second: {fileID: 2100000, guid: 49a5d4207fc10db45b07ea0d51927332, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: material.002
+    second: {fileID: 2100000, guid: 7ccb8a2137ca56e469fec692601fb502, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: material.003
+    second: {fileID: 2100000, guid: dfc7eae256a8b2b4ca8174e6ac5ddfc4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: material.014
+    second: {fileID: 2100000, guid: c9fa4215feddd404d8cbf33a38a0e612, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: material.016
+    second: {fileID: 2100000, guid: 77056f5903ab3bf42b9c60798df0b955, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wire_000000000
+    second: {fileID: 2100000, guid: ba4b6042361ece649b8a43743d317c70, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u0444carpet"
+    second: {fileID: 2100000, guid: 741c7023e5181c347a75f52442d6fdb4, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: AsylumEntranceDoors_MTL_baseColor
+    second: {fileID: 2800000, guid: 1741dfc39c7103f48971a6f4181eb76d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: AsylumEntranceDoors_MTL_normal
+    second: {fileID: 2800000, guid: a21677df05d086c44953dfbeb233cf6c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chair_baseColor
+    second: {fileID: 2800000, guid: 28fe43238a816ac438b86d0444413bae, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chair_normal
+    second: {fileID: 2800000, guid: 697ef992b7985904e9ba7be1a7de21a3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Geso_corredor_diffuse
+    second: {fileID: 2800000, guid: 2cee5675a68b7af40bd24ac74d7c02df, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Geso_corredor_normal
+    second: {fileID: 2800000, guid: ec51ede023bd8754ab973ccf12bb14b9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Geso_corredor_specularGlossiness
+    second: {fileID: 2800000, guid: 147f12d4c91574f4c8b48038dffd2d5a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Mat.1_baseColor
+    second: {fileID: 2800000, guid: 7983c311ddddb0b4fa57c286db13edc7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Mat.1_normal
+    second: {fileID: 2800000, guid: 02e086cee2b003948a904c19f9fa1948, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Mat.2_baseColor
+    second: {fileID: 2800000, guid: 56e0ebd1c7f79704b8c67cbd87508a86, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Mat.2_normal
+    second: {fileID: 2800000, guid: c0d6441bf2d0bbc4f93764e61f96d9ca, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Old_Dusty_Bookshelf_Mat_baseColor
+    second: {fileID: 2800000, guid: 6159c52ee554b51498d69a323274002a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Old_Dusty_Bookshelf_Mat_normal
+    second: {fileID: 2800000, guid: d712dce68e8570247b7503898bd6f3c2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Old_Dusty_Bookshelf_Spiderwebs_Mat_baseColor
+    second: {fileID: 2800000, guid: 4d7c373253877814b9aef3528a911f21, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Old_Dusty_Bookshelf_Spiderwebs_Mat_normal
+    second: {fileID: 2800000, guid: 01fabcf2dcbd3f443abd040e964f4069, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Scene_-_Root_baseColor
+    second: {fileID: 2800000, guid: e4120c6257fc4f0419da08613cf72e84, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Scene_-_Root_normal
+    second: {fileID: 2800000, guid: 41ddc0c1247f66f4f96aa50197ae6b2b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: WallLamp-LightBulb_MTL_baseColor
+    second: {fileID: 2800000, guid: f9717ee68571ef54b80c8fc0c8c238e5, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: WallLamp-LightBulb_MTL_normal
+    second: {fileID: 2800000, guid: 1cf5dd0e3ea6ad14a8be19a73e6e5de8, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: WallLamp_MTL_baseColor
+    second: {fileID: 2800000, guid: 3ce536790d291cc4e8867c72b4be27f0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: WallLamp_MTL_normal
+    second: {fileID: 2800000, guid: 19db894bda72f964282240e3bd17af2d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: WoodPalette_baseColor
+    second: {fileID: 2800000, guid: 1e43af821bc81ae4e9337718f16e5748, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: WoodPalette_normal
+    second: {fileID: 2800000, guid: 604902e5bbc70184bb51314df32c6573, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: brick-heap-x_u1_v1_baseColor
+    second: {fileID: 2800000, guid: 6b6798d09eff83d44a0975ce7f5ff71e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: carpet_diffuse
+    second: {fileID: 2800000, guid: cf7a23d063f685f48832a0fae928e0e3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: carpet_normal
+    second: {fileID: 2800000, guid: ebc5c8d45c8d7454d8d811161f142728, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: carpet_specularGlossiness
+    second: {fileID: 2800000, guid: d9002f70429632a4793014312d59ade0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: defaultMat_diffuse
+    second: {fileID: 2800000, guid: 694ee24cb42407341810f19249de89ee, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: defaultMat_normal
+    second: {fileID: 2800000, guid: c6f03dd79a82c814e9deada468f5b6c2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: i
+    second: {fileID: 2800000, guid: 895f45cdfcbca1c4bb92edab64e10e8d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: material_baseColor
+    second: {fileID: 2800000, guid: 247fa078c049bc048839a68a71f36910, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: material_normal
+    second: {fileID: 2800000, guid: 93a7638a5f78fb5408d06b65802ea51c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: wire_000000000_baseColor
+    second: {fileID: 2800000, guid: 769f70fa670b16d468ea6f0aba8b8b05, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: wire_000000000_normal
+    second: {fileID: 2800000, guid: 99fb9b4a8e099ce46a8701e439a340db, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.2
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 0.002
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
