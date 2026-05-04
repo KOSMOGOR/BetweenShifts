@@ -539,7 +539,7 @@ MonoBehaviour:
   charsPerSecond: 30
   dialogueChoiceRoot: {fileID: 4600367532809581923}
   dialogueSpeakerBox: {fileID: 6454391163489082461}
-  dialogueSpreakerImage: {fileID: 0}
+  dialogueSpreakerImage: {fileID: 5538927538116844874}
 --- !u!1 &2692563003749428096
 GameObject:
   m_ObjectHideFlags: 0

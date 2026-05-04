@@ -75,7 +75,7 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
     public void StartDialogue(string text, DialogueCharacter speaker = null) {
         BaseStartDialogue();
         this.text = text;
-        speakerName = speaker.characterName ?? "";
+        speakerName = speaker == null ? "" : speaker.characterName;
         if (speaker != null && speaker.characterSprite != null) {
             dialogueSpreakerImage.enabled = true;
             dialogueSpreakerImage.sprite = speaker.characterSprite;
@@ -142,7 +142,7 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
     }
 
     void ChangeChoiceDelta(int delta) {
-        CurrentChoice = (CurrentChoice - delta + availableChoices) % availableChoices;
+        CurrentChoice = (CurrentChoice + delta + availableChoices) % availableChoices;
         dialogueChoiceButtons[CurrentChoice].SelectButton();
     }
 
