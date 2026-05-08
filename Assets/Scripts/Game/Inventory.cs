@@ -32,12 +32,13 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
 
     void Update() {
         inventoryStateText.text = inventoryState.ToString();
+        if (Keyboard.current.iKey.wasPressedThisFrame) ChangeInventoryVisibility();
         if (!isDisplayed) return;
-        Move();
+        MoveSelection();
         Interact();
     }
 
-    void Move() {
+    void MoveSelection() {
         currentlySelected -= Keyboard.current.wKey.wasPressedThisFrame ? 1 : 0;
         currentlySelected += Keyboard.current.sKey.wasPressedThisFrame ? 1 : 0;
         UpdateSelected();
@@ -114,7 +115,7 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
 
     GameObject CreateInventoryItemUI(InventoryItem item) {
         GameObject inventoryItem = Instantiate(inventoryItemUIPrefab, inventoryItemList);
-        inventoryItem.GetComponentInChildren<TMP_Text>().text = item.name;
+        inventoryItem.GetComponentInChildren<TMP_Text>().text = item.itemName;
         return inventoryItem;
     }
 
@@ -136,6 +137,7 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
     public void HideInventory() {
         isDisplayed = false;
         inventoryRenderRoot.gameObject.SetActive(false);
+        inventoryState = InventoryState.Regular;
     }
 
     public void ChangeInventoryVisibility() {
