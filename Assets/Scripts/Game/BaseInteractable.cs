@@ -14,7 +14,7 @@ abstract public class BaseInteractable : MonoBehaviour
     }
 
     public InteractableState GetCurrentState() {
-        return states[currentState];
+        return currentState >= 0 ? states[currentState] : null;
     }
 
     public void ChangeState(string stateName, bool checkForTerminal = true) {
@@ -28,7 +28,8 @@ abstract public class BaseInteractable : MonoBehaviour
     }
 
     public void CheckForTerminal() {
-        if (GetCurrentState().terminal) gameObject.SetActive(false);
+        InteractableState state = GetCurrentState();
+        if (state != null && state.terminal) gameObject.SetActive(false);
     }
 }
 

@@ -14,6 +14,7 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
     public Transform inventoryItemList;
     public Transform firstItemPosition;
     public float spacing;
+    public GameObject itemSelectorPrefab;
     [Header("Inventory Item Info")]
     public TMP_Text itemNameText;
     public TMP_Text itemDescriptionText;
@@ -22,12 +23,17 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
     int currentlySelected = -1;
     InventoryState inventoryState;
     List<InventoryItem> craftableItems = new();
+    readonly List<GameObject> displayedInventoryItems = new();
+    GameObject itemSelector;
+    GameObject itemCombineSelector;
     
     public int PromtSelected { get; private set; } = -1;
 
     protected override void AwakeNew() {
         inventoryRenderRoot.gameObject.SetActive(false);
         craftableItems = Resources.LoadAll<InventoryItem>("InventoryItems/CraftableItems").ToList();
+        itemSelector = Instantiate(itemSelectorPrefab, transform);
+        itemCombineSelector = Instantiate(itemSelectorPrefab, transform);
     }
 
     void Update() {
@@ -50,6 +56,8 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
             if (inventoryState == InventoryState.PromtToChoose) PromtSelected = currentlySelected;
             else if (inventoryState == InventoryState.Regular && items.Count >= 2) {
                 PromtSelected = currentlySelected;
+                itemCombineSelector.SetActive(true);
+                itemCombineSelector.transform.position = displayedInventoryItems[currentlySelected].transform.position;
                 inventoryState = InventoryState.PromtToCombine;
             } else if (inventoryState == InventoryState.PromtToCombine) {
                 if (PromtSelected != -1 && currentlySelected != PromtSelected) {
@@ -66,6 +74,7 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
                     }
                     currentlySelected = items.Count - 1;
                 }
+                itemCombineSelector.SetActive(false);
                 inventoryState = InventoryState.Regular;
                 UpdateSelected();
             }
@@ -73,8 +82,10 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
     }
 
     void UpdateSelected() {
+        if (!isDisplayed) return;
         if (items.Count == 0) {
             currentlySelected = -1;
+            itemSelector.SetActive(false);
             itemNameText.text = "";
             itemDescriptionText.text = "";
         } else {
@@ -82,6 +93,8 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
             InventoryItem item = items[currentlySelected];
             itemNameText.text = item.itemName;
             itemDescriptionText.text = item.itemDescription;
+            itemSelector.SetActive(true);
+            itemSelector.transform.position = displayedInventoryItems[currentlySelected].transform.position;
         }
     }
 
@@ -110,6 +123,7 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
         for (int i = 0; i < items.Count; i++) {
             GameObject inventoryItemUI = CreateInventoryItemUI(items[i]);
             inventoryItemUI.transform.position = firstItemPosition.position + -transform.up * (i * spacing);
+            displayedInventoryItems.Add(inventoryItemUI);
         }
     }
 
@@ -120,7 +134,9 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
     }
 
     void UpdateItemRenderList() {
-        foreach (Transform child in inventoryItemList) Destroy(child.gameObject);
+        foreach (GameObject displayerInventoryItem in displayedInventoryItems) Destroy(displayerInventoryItem);
+        displayedInventoryItems.Clear();
+        itemCombineSelector.SetActive(false);
         CreateItemsListUI();
     }
 

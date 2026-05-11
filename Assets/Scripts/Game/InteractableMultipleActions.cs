@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-abstract public class InteractableMultipleActions : BaseInteractable
+public class InteractableMultipleActions : BaseInteractable
 {
     [SerializeReference, SubclassSelector] public List<ActionBase> actions;
     public DialogueCharacter defaultDialogueCharacter;
 
     protected override void Awake() {
         base.Awake();
-        for (int i = 0; i < actions.Count - 1; i++) {
-            actions[i].next = actions[i + 1];
-            actions[i].interactable = this;
+        if (actions.Count > 0) {
+            for (int i = 0; i < actions.Count - 1; i++) {
+                actions[i].next = actions[i + 1];
+                actions[i].interactable = this;
+            }
+            actions[^1].interactable = this;
         }
-        actions[^1].interactable = this;
-        Outline outline = gameObject.AddComponent<Outline>();
-        outline.enabled = false;
     }
 
     public override void Interact() {

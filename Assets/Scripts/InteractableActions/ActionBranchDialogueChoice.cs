@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 [Serializable]
 public class ActionBranchDialogueChoice : ActionBranchBase, IDialogRenderable
 {
+    [TextArea]
     public string dialogueText = "Test dialogue choice";
     public List<ChoiceLabel> dialogueChoices = new() {new("Choice 1", "Label1"), new("Choice 2", "Label2")};
     public DialogueCharacter dialogueSpeaker;

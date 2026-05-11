@@ -352,7 +352,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9067649080789815374
 RectTransform:
   m_ObjectHideFlags: 0
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1597899520556431629}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -2626,6 +2626,7 @@ MonoBehaviour:
   inventoryItemList: {fileID: 6385311400383238573}
   firstItemPosition: {fileID: 8873651854376436156}
   spacing: 70
+  itemSelectorPrefab: {fileID: 8061748974636904374, guid: e3acc3a7bddb18747a9684d964dd00be, type: 3}
   itemNameText: {fileID: 6265383756330266547}
   itemDescriptionText: {fileID: 1136410949738905719}
 --- !u!1 &8963050017261626754

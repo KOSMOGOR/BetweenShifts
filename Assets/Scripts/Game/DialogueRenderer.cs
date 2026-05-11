@@ -92,7 +92,7 @@ public class DialogueRenderer : SingletonMonoBehaviour<DialogueRenderer>
         dialogueChoiceButtons[0].SelectButton();
         this.text = text;
         this.choices = choices;
-        speakerName = speaker.characterName ?? "";
+        speakerName = speaker == null ? "" : speaker.characterName;
         if (speaker != null && speaker.characterSprite != null) {
             dialogueSpreakerImage.enabled = true;
             dialogueSpreakerImage.sprite = speaker.characterSprite;
