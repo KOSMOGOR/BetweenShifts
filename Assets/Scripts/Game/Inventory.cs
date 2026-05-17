@@ -32,8 +32,8 @@ public class Inventory : SingletonMonoBehaviour<Inventory>
     protected override void AwakeNew() {
         inventoryRenderRoot.gameObject.SetActive(false);
         craftableItems = Resources.LoadAll<InventoryItem>("InventoryItems/CraftableItems").ToList();
-        itemSelector = Instantiate(itemSelectorPrefab, transform);
-        itemCombineSelector = Instantiate(itemSelectorPrefab, transform);
+        itemSelector = Instantiate(itemSelectorPrefab, inventoryRenderRoot);
+        itemCombineSelector = Instantiate(itemSelectorPrefab, inventoryRenderRoot);
     }
 
     void Update() {

@@ -3552,7 +3552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4397349442524468903, guid: 5030da1a38ffb0946811258e202db64b, type: 3}
       propertyPath: thisDoorNum
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4397349442524468903, guid: 5030da1a38ffb0946811258e202db64b, type: 3}
       propertyPath: targetDoorNum
@@ -3560,12 +3560,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4397349442524468903, guid: 5030da1a38ffb0946811258e202db64b, type: 3}
       propertyPath: targetScene.m_SceneName
-      value: Room3
+      value: Room4
       objectReference: {fileID: 0}
     - target: {fileID: 4397349442524468903, guid: 5030da1a38ffb0946811258e202db64b, type: 3}
       propertyPath: targetScene.m_SceneAsset
       value: 
-      objectReference: {fileID: 102900000, guid: a1a67bd324418c64887a85fdc5fb1849, type: 3}
+      objectReference: {fileID: 102900000, guid: acaf3ed82eb4f3446b296f5cadf93ecb, type: 3}
     - target: {fileID: 4418797485167972514, guid: 5030da1a38ffb0946811258e202db64b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.8
@@ -3606,8 +3606,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4397349442524468903, guid: 5030da1a38ffb0946811258e202db64b, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
