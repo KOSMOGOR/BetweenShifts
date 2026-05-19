@@ -1,0 +1,54 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+public class InteractableMultipleActions : BaseInteractable
+{
+    [SerializeReference, SubclassSelector] public List<ActionBase> actions;
+    public DialogueCharacter defaultDialogueCharacter;
+
+    protected override void Awake() {
+        base.Awake();
+        if (actions.Count > 0) {
+            for (int i = 0; i < actions.Count - 1; i++) {
+                actions[i].next = actions[i + 1];
+                actions[i].interactable = this;
+            }
+            actions[^1].interactable = this;
+        }
+    }
+
+    public override void Interact() {
+        StartCoroutine(InteractCoroutine(PlayerState.Interacting));
+    }
+
+    IEnumerator InteractCoroutine(PlayerState newState, bool returnToStartState = true) {
+        PlayerState startState = Player.I.playerState;
+        Player.I.playerState = newState;
+        ActionBase current = actions[0];
+        while (current != null) {
+            yield return current.DoAction();
+            current = current.next;
+        }
+        if (returnToStartState) Player.I.playerState = startState;
+        CheckForTerminal();
+    }
+
+    public ActionBase TryGetAction(int ind) {
+        if (ind < 0 || ind >= actions.Count) return null;
+        return actions[ind];
+    }
+
+    public ActionBase FindLabel(string labelText) {
+        if (labelText == "") return null;
+        return actions
+            .Where(action => action is ActionLabel)
+            .FirstOrDefault(action => (action as ActionLabel).label == labelText);
+    }
+
+    public ActionBase FindLabelOrNext(string labelText, ActionBase action) {
+        if (labelText == "Next") return TryGetAction(actions.FindIndex(a => a == action) + 1);
+        return FindLabel(labelText);
+    }
+}
